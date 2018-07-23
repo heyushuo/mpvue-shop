@@ -1,0 +1,31 @@
+.index {
+  width: 100%;
+  .swiper {
+    width: 100%;
+    height: 417rpx;
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      .swiper-item {
+        width: 100%;
+        height: 100%;
+        .slide-image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .channel {
+    display: flex;
+    div {
+      width: 25%;
+      text-align: center;
+      img {
+        height: 58rpx;
+        width: 58rpx;
+        display: inline-block;
+      }
+    }
+  }
+}
