@@ -30,7 +30,20 @@
       </div>
     </div>
     <div class="newgoods">
-
+      <div class="top">
+        <p>新品首发</p>
+        <p>查看全部</p>
+      </div>
+      <div class="list">
+        <ul>
+          <li v-for="(item, index) in newGoods" :key="index">
+            <img :src="item.primary_pic_url" alt="">
+            <p>{{item.name}}</p>
+            <p>{{item.goods_brief}}</p>
+            <p>{{item.retail_price}}</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +55,8 @@ export default {
     return {
       banner: [],
       channel: [],
-      brandList: []
+      brandList: [],
+      newGoods: []
     };
   },
   components: {},
@@ -52,6 +66,7 @@ export default {
       this.banner = data.banner;
       this.channel = data.channel;
       this.brandList = data.brandList;
+      this.newGoods = data.newGoods;
     }
   },
   created() {
