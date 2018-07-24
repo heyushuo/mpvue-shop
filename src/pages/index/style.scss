@@ -34,7 +34,6 @@
     width: 100%;
     margin-top: 20rpx;
     background: #ffffff;
-    padding-bottom: 5rpx;
     .head {
       text-align: center;
       padding: 40rpx 0;
@@ -48,6 +47,7 @@
       div {
         width: 49%;
         height: 235rpx;
+        margin-bottom: 10rpx;
         position: relative;
         div {
           position: absolute;
@@ -66,37 +66,62 @@
     }
   }
   .newgoods {
-    margin-top: 20rpx;
-    height: 260rpx;
-    width: 100%;
-    background: url('../../../static/images/bgnew.png') no-repeat;
-    background-size: 100% 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .top {
-      p {
-        color: #8c9bae;
-      }
-      p:nth-child(2) {
-        font-size: 22rpx;
-        padding: 10rpx 50rpx;
-        background: #d8e4f0;
-        margin-top: 27rpx;
+    .newgoods-top {
+      margin-top: 20rpx;
+      height: 260rpx;
+      width: 100%;
+      background: url('../../../static/images/bgnew.png') no-repeat;
+      background-size: 100% 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .top {
+        p {
+          color: #8c9bae;
+        }
+        p:nth-child(2) {
+          font-size: 22rpx;
+          padding: 10rpx 50rpx;
+          background: #d8e4f0;
+          margin-top: 27rpx;
+        }
       }
     }
     .list {
-      width: 10000px;
+      margin-top: 30rpx;
       ul {
         width: 400px;
         display: flex;
         overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
         li {
+          width: 280rpx;
+          margin-left: 25rpx;
+          background: #fff;
           img {
             width: 280rpx;
             height: 280rpx;
+          }
+          p:nth-child(2) {
+            font-size: 34rpx;
+            font-weight: bold;
+          }
+          p:nth-child(3) {
+            color: #8a8a8a;
+            font-size: 30rpx;
+          }
+          p:nth-child(4) {
+            color: #9c3232;
+            font-size: 24rpx;
+          }
+          p {
+            width: 90%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-top: 16rpx;
+            text-indent: 0.5em;
           }
         }
       }

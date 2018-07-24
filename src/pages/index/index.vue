@@ -30,17 +30,19 @@
       </div>
     </div>
     <div class="newgoods">
-      <div class="top">
-        <p>新品首发</p>
-        <p>查看全部</p>
+      <div class="newgoods-top">
+        <div class="top">
+          <p>新品首发</p>
+          <p>查看全部</p>
+        </div>
       </div>
       <div class="list">
         <ul>
           <li v-for="(item, index) in newGoods" :key="index">
-            <img :src="item.primary_pic_url" alt="">
+            <img :src="item.list_pic_url" alt="">
             <p>{{item.name}}</p>
             <p>{{item.goods_brief}}</p>
-            <p>{{item.retail_price}}</p>
+            <p>￥{{item.retail_price}}</p>
           </li>
         </ul>
       </div>
@@ -49,33 +51,37 @@
 </template>
 
 <script>
-import { get } from "../../utils";
-export default {
-  data() {
-    return {
-      banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: []
-    };
-  },
-  components: {},
-  methods: {
-    async getData() {
-      var data = await get("/index/index");
-      this.banner = data.banner;
-      this.channel = data.channel;
-      this.brandList = data.brandList;
-      this.newGoods = data.newGoods;
+  import {
+    get
+  } from "../../utils";
+  export default {
+    data() {
+      return {
+        banner: [],
+        channel: [],
+        brandList: [],
+        newGoods: []
+      };
+    },
+    components: {},
+    methods: {
+      async getData() {
+        var data = await get("/index/index");
+        this.banner = data.banner;
+        this.channel = data.channel;
+        this.brandList = data.brandList;
+        this.newGoods = data.newGoods;
+      }
+    },
+    created() {
+      // 调用应用实例的方法获取全局数据
+      this.getData();
     }
-  },
-  created() {
-    // 调用应用实例的方法获取全局数据
-    this.getData();
-  }
-};
+  };
+
 </script>
 
 <style lang='scss' scoped>
-@import "./style.scss";
+  @import "./style.scss";
+
 </style>
