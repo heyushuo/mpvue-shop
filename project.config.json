@@ -10,7 +10,7 @@
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
 	"appid": "wx601ce71bde7b9add",
-	"projectname": "newmpvue",
+	"projectname": "mpvue-shop",
 	"condition": {
 		"search": {
 			"current": -1,

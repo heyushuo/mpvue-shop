@@ -18,6 +18,8 @@
   }
   .channel {
     display: flex;
+    padding: 20rpx 0;
+    background: #ffffff;
     div {
       width: 25%;
       text-align: center;
@@ -25,6 +27,42 @@
         height: 58rpx;
         width: 58rpx;
         display: inline-block;
+      }
+    }
+  }
+  .brand {
+    width: 100%;
+    margin-top: 20rpx;
+    background: #ffffff;
+    .head{
+      text-align: center;
+      padding: 40rpx 0;
+
+    }
+    .content {
+      width: 97%;
+      margin: 0 auto;
+      // margin: 10rpx;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      div {
+        width: 49%;
+        height: 235rpx;
+        position: relative;
+        div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 10rpx;
+          p:nth-child(2) {
+            font-size: 24rpx;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
     }
   }

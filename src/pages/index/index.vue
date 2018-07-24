@@ -15,6 +15,23 @@
         <p>{{item.name}}</p>
       </div>
     </div>
+    <div class="brand">
+      <div class="head">
+        品牌制造商直供
+      </div>
+      <div class="content">
+        <div v-for="(item, index) in brandList" :key="index">
+          <div>
+            <p>{{item.name}}</p>
+            <p>{{item.floor_price}}元起</p>
+          </div>
+          <img :src="item.new_pic_url" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="newgoods">
+
+    </div>
   </div>
 </template>
 
@@ -24,7 +41,8 @@ export default {
   data() {
     return {
       banner: [],
-      channel: []
+      channel: [],
+      brandList: []
     };
   },
   components: {},
@@ -33,6 +51,7 @@ export default {
       var data = await get("/index/index");
       this.banner = data.banner;
       this.channel = data.channel;
+      this.brandList = data.brandList;
     }
   },
   created() {

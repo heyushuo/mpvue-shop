@@ -21,9 +21,13 @@ export default {
   padding: 200rpx 0;
   box-sizing: border-box;
 }
+page{
+  background: #f4f4f4;
+}
 view,
 text {
   font-size: 28rpx;
+  color: #333;
 }
 
 /* this rule will be remove */

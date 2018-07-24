@@ -55,8 +55,6 @@ export default {
           "text": "我的"
         }
       ]
-    },
-    // debug: true
-
+    }
   }
 }
