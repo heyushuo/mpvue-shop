@@ -39,13 +39,13 @@
       padding: 40rpx 0;
     }
     .content {
-      width: 97%;
+      width: 730rpx;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       div {
-        width: 49%;
+        width: 360rpx;
         height: 235rpx;
         margin-bottom: 10rpx;
         position: relative;
@@ -79,51 +79,202 @@
       .top {
         p {
           color: #8c9bae;
+          font-size: 32rpx;
         }
         p:nth-child(2) {
+          width: 180rpx;
+          height: 50rpx;
+          line-height: 50rpx;
+          margin: 27rpx auto 0 auto;
           font-size: 22rpx;
-          padding: 10rpx 50rpx;
           background: #d8e4f0;
-          margin-top: 27rpx;
         }
       }
     }
     .list {
-      margin-top: 30rpx;
+      margin-top: 20rpx;
+      background: #fff;
       ul {
-        width: 400px;
-        display: flex;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
-        li {
-          width: 280rpx;
-          margin-left: 25rpx;
-          background: #fff;
-          img {
+        .scroll-view {
+          width: 100%; // height: 470rpx; // display: flex;
+          // flex-wrap: nowrap;
+          white-space: nowrap;
+          li {
             width: 280rpx;
-            height: 280rpx;
+            height: 416rpx;
+            margin: 5rpx 0 5rpx 25rpx;
+            display: inline-block;
+            img {
+              width: 280rpx;
+              height: 280rpx;
+            }
+            p:nth-child(2) {
+              font-size: 30rpx;
+              font-weight: bold;
+            }
+            p:nth-child(3) {
+              color: #8a8a8a;
+              font-size: 24rpx;
+            }
+            p:nth-child(4) {
+              color: #9c3232;
+              font-size: 24rpx;
+            }
+            p {
+              width: 94%;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              margin-top: 8rpx;
+              text-indent: 1em;
+            }
           }
-          p:nth-child(2) {
-            font-size: 34rpx;
-            font-weight: bold;
-          }
-          p:nth-child(3) {
-            color: #8a8a8a;
-            font-size: 30rpx;
-          }
-          p:nth-child(4) {
-            color: #9c3232;
-            font-size: 24rpx;
-          }
-          p {
-            width: 90%;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            margin-top: 16rpx;
-            text-indent: 0.5em;
+          li:nth-child(n+2) {
+            border-left: 1px solid #f4f4f4;
           }
         }
+      }
+    }
+  }
+  .hotgoods {
+    .newgoods-top {
+      background: url('../../../static/images/bgtopic.png') no-repeat;
+      background-size: 100% 100%;
+      .top {
+        p {
+          color: #b1a279;
+          font-size: 32rpx;
+        }
+        p:nth-child(2) {
+          background: #f4e9cb;
+        }
+      }
+    }
+  }
+  .topicList {
+    margin-top: 20rpx;
+    background: #fff;
+    .topicList-top {
+      text-align: center;
+      padding: 36rpx;
+      vertical-align: middle;
+      .icon {
+        display: inline-block;
+        width: 32rpx;
+        height: 32rpx;
+        margin-left: 5rpx;
+        background: url('../../../static//images/right.png') no-repeat;
+        background-size: 100% 100%;
+        vertical-align: middle;
+      }
+    }
+    .list {
+      .scroll-view {
+        white-space: nowrap;
+        li {
+          display: inline-block;
+          width: 575rpx;
+          margin-left: 25rpx;
+          img {
+            display: block;
+            width: 575rpx;
+            height: 325rpx;
+            border-radius: 10rpx;
+          }
+          .btom {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 42rpx;
+            width: 100%;
+            div:nth-child(1) {
+              width: 90%;
+              p {
+                margin-top: 8rpx;
+              }
+              p:nth-child(1) {
+                font-size: 30rpx;
+                font-weight: bold;
+              }
+              p:nth-child(2) {
+                width: 90%;
+                color: #8a8a8a;
+                font-size: 24rpx;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+            }
+            div:nth-child(2) {
+              margin-top: 8rpx;
+              color: #9c3232;
+              font-size: 24rpx;
+            }
+          }
+        }
+        li:last-child {
+          margin-right: 25rpx;
+        }
+      }
+    }
+  }
+  .newcategory {
+    margin-top: 20rpx;
+    padding: 0 10rpx 25rpx 10rpx;
+    .head {
+      padding: 25rpx 0;
+      text-align: center;
+    }
+    .sublist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 730rpx;
+      margin: 0 auto;
+      div {
+        width: 360rpx;
+        background: #fff;
+        margin-bottom: 10rpx;
+        img {
+          display: block;
+          width: 302rpx;
+          height: 302rpx;
+          margin: 0 auto;
+        }
+        p {
+          margin-bottom: 5rpx;
+        }
+        p:nth-child(2) {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 98%;
+        }
+        p:nth-child(3) {
+          color: #9c3232;
+        }
+      }
+      .last {
+        display: block;
+        width: 302rpx;
+        height: 302rpx;
+        margin: 0 auto;
+        p {
+          height: 33rpx;
+          width: 100%;
+          line-height: 33rpx;
+          color: #333;
+          font-size: 33rpx;
+        }
+        .icon {
+          display: inline-block;
+          width: 70rpx;
+          height: 70rpx;
+          background: url('../../../static/images/rightbig.png') no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+      div:nth-child(2n) {
+        margin-left: 10rpx;
       }
     }
   }
