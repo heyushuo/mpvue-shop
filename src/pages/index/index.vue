@@ -52,7 +52,8 @@
     <div class="newgoods hotgoods">
       <div class="newgoods-top">
         <div class="top">
-          <p>人气推荐 ▪ 好物精选</p>
+          <p>人气推荐
+            <span></span> 好物精选</p>
           <p>查看全部</p>
         </div>
       </div>
@@ -97,12 +98,12 @@
       <div class="list" v-for="(item, index) in newCategoryList" :key="index">
         <div class="head">{{item.name}}好物</div>
         <div class="sublist">
-          <div v-if="item.goodsList.length-1 != subindex" v-for="(subitem, subindex) in item.goodsList" :key="subindex">
+          <div v-for="(subitem, subindex) in item.goodsList" :key="subindex">
             <img :src="subitem.list_pic_url" alt="">
             <p>{{subitem.name}}</p>
             <p>￥{{subitem.retail_price}}</p>
           </div>
-          <div v-else>
+          <div>
             <div class="last">
               <p>{{item.name}}好物</p>
               <span class="icon"></span>
@@ -131,7 +132,7 @@ export default {
   components: {},
   methods: {
     async getData() {
-      var data = await get("/index/index");
+      const data = await get("/index/index");
       this.banner = data.banner;
       this.channel = data.channel;
       this.brandList = data.brandList;
