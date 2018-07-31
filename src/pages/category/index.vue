@@ -9,29 +9,69 @@
     </div>
     <div class="content">
       <scroll-view class="left" scroll-y="true">
-        <div class="iconText" v-for="(item, index) in listData" :key="index">
-          {{item}}
+        <div class="iconText" @click="selectitem(item.id,index)" v-for="(item, index) in listData" :class="[index==nowIndex?'active':'']"
+          :key="index">
+          {{item.name}}
         </div>
       </scroll-view>
-      <scroll-view class="right">
+      <scroll-view class="right" scroll-y="true">
+        <div class="banner">
+          <img :src="detailData.banner_url" alt="">
+        </div>
+        <div class="title">
+          <span>—</span>
+          <span>{{detailData.name}}分类</span>
+          <span>—</span>
+        </div>
+        <div class="bottom">
+          <div v-for="(item,index) in detailData.subList" :key="index" class="item">
+            <img :src="item.wap_banner_url" alt="">
+            <span>{{item.name}}</span>
+          </div>
+        </div>
       </scroll-view>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  created() {},
-  data() {
-    return {
-      listData: ["居家", "居家", "居家", "居家", "居家", "居家", "居家", "居家", "居家", "居家", "居家", "居家", "居家"]
-    };
-  },
-  components: {},
-  methods: {},
-  computed: {}
-};
+  import {
+    get
+  } from '../../utils'
+  export default {
+    created() {
+      //获取列表数据
+      this.getListData();
+      //获取默认右侧数据
+      this.selectitem(this.id, this.nowIndex);
+    },
+    data() {
+      return {
+        id: "1005000",
+        nowIndex: 0,
+        listData: [],
+        detailData: {}
+      };
+    },
+    components: {},
+    methods: {
+      async selectitem(id, index) {
+        this.nowIndex = index;
+        const data = await get("/category/currentaction", {
+          "id": id
+        })
+        this.detailData = data.data.currentOne;
+      },
+      async getListData() {
+        const data = await get('/category/indexaction');
+        this.listData = data.categoryList;
+      }
+    },
+    computed: {}
+  };
+
 </script>
 <style lang='scss' scoped>
-@import "./style";
+  @import "./style";
+
 </style>

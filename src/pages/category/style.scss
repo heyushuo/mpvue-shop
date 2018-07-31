@@ -47,6 +47,11 @@
         font-size: 28rpx;
         border-left: 6rpx solid #fff;
       }
+      .active {
+        color: #ab2b2b;
+        font-size: 36rpx;
+        border-left: 6rpx solid #ab2b2b;
+      }
     }
     .right {
       flex: 1;
@@ -54,6 +59,42 @@
       flex: 1;
       height: 100%;
       padding: 0 30rpx 0 30rpx;
+      .banner {
+        width: 100%;
+        height: 222rpx;
+        margin-top: 20rpx;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .title {
+        text-align: center;
+        padding: 50rpx 0;
+        span:nth-child(2) {
+          font-size: 24rpx;
+          color: #333;
+          padding: 0 10rpx;
+        }
+        span:nth-child(2n+1) {
+          color: #999;
+        }
+      }
+      .bottom {
+        display: flex; // justify-content: space-between;
+        flex-wrap: wrap;
+        .item {
+          width: 33.33%;
+          text-align: center;
+          margin-bottom: 20rpx;
+          img {
+            height: 144rpx;
+            width: 144rpx;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
     }
   }
 }
