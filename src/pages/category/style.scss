@@ -32,5 +32,28 @@
   }
   .content {
     flex: 1;
+    background: #fff;
+    display: flex;
+    .left {
+      width: 162rpx;
+      height: 100%;
+      text-align: center;
+      .iconText {
+        text-align: center;
+        line-height: 90rpx;
+        width: 162rpx;
+        height: 90rpx;
+        color: #333;
+        font-size: 28rpx;
+        border-left: 6rpx solid #fff;
+      }
+    }
+    .right {
+      flex: 1;
+      border-left: 1px solid #fafafa;
+      flex: 1;
+      height: 100%;
+      padding: 0 30rpx 0 30rpx;
+    }
   }
 }
