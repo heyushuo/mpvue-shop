@@ -21,8 +21,9 @@ export default {
   padding: 200rpx 0;
   box-sizing: border-box;
 }
-page{
+page {
   background: #f4f4f4;
+  height: 100%;
 }
 view,
 text {

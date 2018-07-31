@@ -1,5 +1,5 @@
 {
-  "pages": ["pages/goods/main", "pages/index/main", "pages/logs/main"],
+  "pages": ["pages/category/main", "pages/topic/main", "pages/goods/main", "pages/index/main", "pages/logs/main"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -24,13 +24,13 @@
         "text": "专题"
       },
       {
-        "pagePath": "pages/index/main",
+        "pagePath": "pages/category/main",
         "iconPath": "static/images/ic_menu_sort_nor.png",
         "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
         "text": "分类"
       },
       {
-        "pagePath": "pages/index/main",
+        "pagePath": "pages/topic/main",
         "iconPath": "static/images/ic_menu_shoping_nor.png",
         "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
         "text": "购物车"

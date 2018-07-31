@@ -38,12 +38,14 @@
         <div>{{item.value}}</div>
       </div>
     </div>
-
+    <!-- <div> -->
     <template>
-      <div class="detail">
-        <wxParse :content="article" @preview="preview" @navigate="navigate" />
-      </div>
+      <!-- <div class="detail" v-html="article"> -->
+      <wxParse :content="article" @preview="preview" @navigate="navigate" />
+      <!-- </div> -->
     </template>
+    <!-- </div> -->
+
     <!-- 选择规格部分 -->
     <!-- <div class="pop" @click="heyuhsuo">
       <div class="attr-pop" :class="[showpop ? fadeup : fadedown]">
@@ -55,57 +57,50 @@
 </template>
 
 <script>
-  import {
-    get
-  } from "../../utils";
-  import wxParse from 'mpvue-wxparse'
-  console.log(wxParse);
-
-  export default {
-    created() {
-      this.goodsDetail();
+import { get } from "../../utils";
+import wxParse from "mpvue-wxparse";
+export default {
+  created() {
+    this.goodsDetail();
+  },
+  data() {
+    return {
+      showpop: false,
+      gallery: [],
+      info: {},
+      brand: {},
+      attribute: [],
+      article: "<div>我是HTML代码</div>"
+    };
+  },
+  components: {
+    wxParse
+  },
+  methods: {
+    async goodsDetail() {
+      const data = await get("/goods/detailaction", {
+        id: 1006013
+      });
+      this.gallery = data.gallery;
+      this.info = data.info;
+      this.brand = data.brand;
+      this.attribute = data.attribute;
     },
-    data() {
-      return {
-        showpop: false,
-        gallery: [],
-        info: {},
-        brand: {},
-        attribute: [],
-        article: '<div>我是HTML代码</div>'
-      };
+    heyuhsuo() {
+      this.showpop = !this.showpop;
+      console.log(this.showpop);
     },
-    components: {
-      wxParse
+    preview(src, e) {
+      // do something
     },
-    methods: {
-      async goodsDetail() {
-        const data = await get("/goods/detailaction", {
-          id: 1006013
-        });
-        this.gallery = data.gallery;
-        this.info = data.info;
-        this.brand = data.brand;
-        this.attribute = data.attribute;
-        // this.article = data.info.goods_desc;
-      },
-      heyuhsuo() {
-        this.showpop = !this.showpop;
-        console.log(this.showpop)
-      },
-      preview(src, e) {
-        // do something
-      },
-      navigate(href, e) {
-        // do something
-      }
-    },
-    computed: {}
-  };
-
+    navigate(href, e) {
+      // do something
+    }
+  },
+  computed: {}
+};
 </script>
 <style lang='scss' scoped>
-  @import "./style.scss";
-  @import url("~mpvue-wxparse/src/wxParse.css");
-
+@import url("~mpvue-wxparse/src/wxParse.css");
+@import "./style.scss";
 </style>
