@@ -9,8 +9,7 @@
     </div>
     <div class="content">
       <scroll-view class="left" scroll-y="true">
-        <div class="iconText" @click="selectitem(item.id,index)" v-for="(item, index) in listData" :class="[index==nowIndex?'active':'']"
-          :key="index">
+        <div class="iconText" @click="selectitem(item.id,index)" v-for="(item, index) in listData" :class="[index==nowIndex?'active':'']" :key="index">
           {{item.name}}
         </div>
       </scroll-view>
@@ -24,7 +23,7 @@
           <span>—</span>
         </div>
         <div class="bottom">
-          <div v-for="(item,index) in detailData.subList" :key="index" class="item">
+          <div @click="categoryList(item.id)" v-for="(item,index) in detailData.subList" :key="index" class="item">
             <img :src="item.wap_banner_url" alt="">
             <span>{{item.name}}</span>
           </div>
@@ -35,43 +34,46 @@
 </template>
 
 <script>
-  import {
-    get
-  } from '../../utils'
-  export default {
-    created() {
-      //获取列表数据
-      this.getListData();
-      //获取默认右侧数据
-      this.selectitem(this.id, this.nowIndex);
+import { get } from "../../utils";
+export default {
+  created() {
+    //获取列表数据
+    this.getListData();
+    //获取默认右侧数据
+    this.selectitem(this.id, this.nowIndex);
+  },
+  data() {
+    return {
+      id: "1005000",
+      nowIndex: 0,
+      listData: [],
+      detailData: {}
+    };
+  },
+  components: {},
+  methods: {
+    async selectitem(id, index) {
+      this.nowIndex = index;
+      const data = await get("/category/currentaction", {
+        id: id
+      });
+      this.detailData = data.data.currentOne;
     },
-    data() {
-      return {
-        id: "1005000",
-        nowIndex: 0,
-        listData: [],
-        detailData: {}
-      };
+    async getListData() {
+      const data = await get("/category/indexaction");
+      this.listData = data.categoryList;
     },
-    components: {},
-    methods: {
-      async selectitem(id, index) {
-        this.nowIndex = index;
-        const data = await get("/category/currentaction", {
-          "id": id
-        })
-        this.detailData = data.data.currentOne;
-      },
-      async getListData() {
-        const data = await get('/category/indexaction');
-        this.listData = data.categoryList;
-      }
-    },
-    computed: {}
-  };
+    categoryList(id) {
+      console.log("tiaozhuan");
 
+      wx.navigateTo({
+        url: "../categorylist/main?id=" + id
+      });
+    }
+  },
+  computed: {}
+};
 </script>
 <style lang='scss' scoped>
-  @import "./style";
-
+@import "./style";
 </style>

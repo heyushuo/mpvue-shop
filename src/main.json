@@ -1,5 +1,5 @@
 {
-  "pages": ["pages/category/main", "pages/topic/main", "pages/goods/main", "pages/index/main", "pages/logs/main"],
+  "pages": ["pages/category/main", "pages/categorylist/main", "pages/topic/main", "pages/goods/main", "pages/index/main", "pages/logs/main"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -36,7 +36,7 @@
         "text": "购物车"
       },
       {
-        "pagePath": "pages/index/main",
+        "pagePath": "pages/topic/main",
         "iconPath": "static/images/ic_menu_me_nor.png",
         "selectedIconPath": "static/images/ic_menu_me_pressed.png",
         "text": "我的"

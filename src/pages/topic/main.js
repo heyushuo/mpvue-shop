@@ -5,6 +5,7 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    // navigationBarTitleText: 'heyushuo',
-  }
+    enablePullDownRefresh: true,
+    navigationBarTitleText: '查看启动日志'
+  },
 }

@@ -5,38 +5,22 @@ var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 var MpvuePlugin = require('webpack-mpvue-asset-plugin')
 var glob = require('glob')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var configFilesArray = []
-var relative = require('relative')
 
-function resolve(dir) {
+function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-function getEntry(rootSrc) {
-  var map = {};
-  glob.sync(rootSrc + '/pages/**/main.js')
-    .forEach(file => {
-      var key = relative(rootSrc, file).replace('.js', '');
-      map[key] = file;
-    })
-  glob.sync(rootSrc + '/pages/**/main.json')
-    .forEach(file => {
-      configFilesArray.push({
-        from: file,
-        to: relative(rootSrc, file)
-      })
-    })
-  return map;
+function getEntry (rootSrc, pattern) {
+  var files = glob.sync(path.resolve(rootSrc, pattern))
+  return files.reduce((res, file) => {
+    var info = path.parse(file)
+    var key = info.dir.slice(rootSrc.length + 1) + '/' + info.name
+    res[key] = path.resolve(file)
+    return res
+  }, {})
 }
 
-const appEntry = {
-  app: resolve('./src/main.js')
-}
-configFilesArray.push({
-  from: resolve('./src/main.json'),
-  to: 'app.json'
-})
+const appEntry = { app: resolve('./src/main.js') }
 const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
@@ -49,8 +33,9 @@ module.exports = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production' ?
-      config.build.assetsPublicPath : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -63,7 +48,8 @@ module.exports = {
     mainFields: ['browser', 'module', 'main']
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.vue$/,
         loader: 'mpvue-loader',
         options: vueLoaderConfig
@@ -94,7 +80,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: utils.assetsPath('media/[name].[ext]')
+          name: utils.assetsPath('media/[name]].[ext]')
         }
       },
       {
@@ -108,12 +94,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new MpvuePlugin(),
-    new CopyWebpackPlugin(configFilesArray),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, '../static'),
-      to: path.resolve(__dirname, '../dist/static'),
-      ignore: ['.*']
-    }])
+    new MpvuePlugin()
   ]
 }
