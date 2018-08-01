@@ -39,7 +39,7 @@
       <div class="list">
         <ul>
           <scroll-view class="scroll-view" :scroll-x="true">
-            <li v-for="(item, index) in newGoods" :key="index">
+            <li @click="goodsDetail(item.id)" v-for="(item, index) in newGoods" :key="index">
               <img :src="item.list_pic_url" alt="">
               <p>{{item.name}}</p>
               <p>{{item.goods_brief}}</p>
@@ -60,7 +60,7 @@
       <div class="list">
         <ul>
           <scroll-view class="scroll-view" :scroll-x="true">
-            <li v-for="(item, index) in hotGoods" :key="index">
+            <li @click="goodsDetail(item.id)" v-for="(item, index) in hotGoods" :key="index">
               <img :src="item.list_pic_url" alt="">
               <p>{{item.name}}</p>
               <p>{{item.goods_brief}}</p>
@@ -98,12 +98,12 @@
       <div class="list" v-for="(item, index) in newCategoryList" :key="index">
         <div class="head">{{item.name}}好物</div>
         <div class="sublist">
-          <div v-for="(subitem, subindex) in item.goodsList" :key="subindex">
+          <div @click="goodsDetail(subitem.id)" v-for="(subitem, subindex) in item.goodsList" :key="subindex">
             <img :src="subitem.list_pic_url" alt="">
             <p>{{subitem.name}}</p>
             <p>￥{{subitem.retail_price}}</p>
           </div>
-          <div>
+          <div @click="categoryList(item.id)">
             <div class="last">
               <p>{{item.name}}好物</p>
               <span class="icon"></span>
@@ -116,39 +116,53 @@
 </template>
 
 <script>
-import { get } from "../../utils";
-export default {
-  data() {
-    return {
-      banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: []
-    };
-  },
-  components: {},
-  methods: {
-    async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
-      this.channel = data.channel;
-      this.brandList = data.brandList;
-      this.newGoods = data.newGoods;
-      this.hotGoods = data.hotGoods;
-      this.topicList = data.topicList;
-      this.newCategoryList = data.newCategoryList;
+  import {
+    get
+  } from "../../utils";
+  export default {
+    data() {
+      return {
+        banner: [],
+        channel: [],
+        brandList: [],
+        newGoods: [],
+        hotGoods: [],
+        topicList: [],
+        newCategoryList: []
+      };
+    },
+    components: {},
+    methods: {
+      async getData() {
+        const data = await get("/index/index");
+        this.banner = data.banner;
+        this.channel = data.channel;
+        this.brandList = data.brandList;
+        this.newGoods = data.newGoods;
+        this.hotGoods = data.hotGoods;
+        this.topicList = data.topicList;
+        this.newCategoryList = data.newCategoryList;
+      },
+      goodsDetail(id) {
+        wx.navigateTo({
+          url: '/pages/goods/main?id=' + id
+        });
+      },
+      categoryList(id) {
+        wx.navigateTo({
+          url: '/pages/categorylist/main?id=' + id
+        });
+      }
+    },
+    created() {
+      // 调用应用实例的方法获取全局数据
+      this.getData();
     }
-  },
-  created() {
-    // 调用应用实例的方法获取全局数据
-    this.getData();
-  }
-};
+  };
+
 </script>
 
 <style lang='scss' scoped>
-@import "./style.scss";
+  @import "./style.scss";
+
 </style>

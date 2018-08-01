@@ -19,7 +19,7 @@
         <p>{{info.name}}</p>
         <p>{{info.goods_brief}}</p>
         <p>￥{{info.retail_price}}</p>
-        <div class="brand" v-if="brand.name">
+        <div v-if="brand.name" class="brand">
           <p>{{brand.name}}</p>
         </div>
       </div>
@@ -29,7 +29,7 @@
       <div></div>
     </div>
 
-    <div class="attribute">
+    <div v-if="attribute.length!=0" class="attribute">
       <div class="head">
         商品参数
       </div>
@@ -38,13 +38,9 @@
         <div>{{item.value}}</div>
       </div>
     </div>
-    <!-- <div> -->
-    <template>
-      <!-- <div class="detail" v-html="article"> -->
-      <wxParse :content="article" @preview="preview" @navigate="navigate" />
-      <!-- </div> -->
-    </template>
-    <!-- </div> -->
+    <div v-if="goods_desc" class="detail">
+      <wxParse :content="goods_desc" />
+    </div>
 
     <!-- 选择规格部分 -->
     <!-- <div class="pop" @click="heyuhsuo">
@@ -57,50 +53,61 @@
 </template>
 
 <script>
-import { get } from "../../utils";
-import wxParse from "mpvue-wxparse";
-export default {
-  created() {
-    this.goodsDetail();
-  },
-  data() {
-    return {
-      showpop: false,
-      gallery: [],
-      info: {},
-      brand: {},
-      attribute: [],
-      article: "<div>我是HTML代码</div>"
-    };
-  },
-  components: {
-    wxParse
-  },
-  methods: {
-    async goodsDetail() {
-      const data = await get("/goods/detailaction", {
-        id: 1006013
-      });
-      this.gallery = data.gallery;
-      this.info = data.info;
-      this.brand = data.brand;
-      this.attribute = data.attribute;
+  import {
+    get
+  } from "../../utils";
+  import wxParse from "mpvue-wxparse";
+  export default {
+    created() {
+
     },
-    heyuhsuo() {
-      this.showpop = !this.showpop;
-      console.log(this.showpop);
+    mounted() {
+      this.id = this.$root.$mp.query.id;
+      this.goodsDetail();
+      console.log(this.id)
     },
-    preview(src, e) {
-      // do something
+    data() {
+      return {
+        showpop: false,
+        gallery: [],
+        info: {},
+        brand: {},
+        attribute: [],
+        goods_desc: "",
+        id: ""
+      };
     },
-    navigate(href, e) {
-      // do something
-    }
-  },
-  computed: {}
-};
+    components: {
+      wxParse
+    },
+    methods: {
+      async goodsDetail() {
+        const data = await get("/goods/detailaction", {
+          id: this.id
+        });
+        this.gallery = data.gallery;
+        this.info = data.info;
+        this.brand = data.brand;
+        this.attribute = data.attribute;
+        this.goods_desc = data.info.goods_desc
+      },
+      heyuhsuo() {
+        this.showpop = !this.showpop;
+        console.log(this.showpop);
+      },
+      preview(src, e) {
+        // do something
+      },
+      navigate(href, e) {
+        // do something
+      }
+    },
+    computed: {}
+  };
+
 </script>
 <style lang='scss' scoped>
-@import url("~mpvue-wxparse/src/wxParse.css");
-@import "./style.scss";
+  @import url("~mpvue-wxparse/src/wxParse.css");
+  @import "./style.scss";
+
 </style>
