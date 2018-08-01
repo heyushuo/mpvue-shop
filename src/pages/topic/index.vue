@@ -18,7 +18,7 @@
 <script>
 import { get } from "../../utils";
 export default {
-  async onPullDownRefresh() {
+  onPullDownRefresh() {
     this.page = 1;
     this.getListData();
     console.log("end");
@@ -48,7 +48,7 @@ export default {
       const data = await get("/topic/listaction", {
         page: this.page
       });
-      this.topicList = data.data;
+      this.topicList.concat(data.data);
     }
   },
   computed: {}
