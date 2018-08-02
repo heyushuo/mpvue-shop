@@ -1,59 +1,52 @@
 <template>
-  <div class="topic">
-    <ul class="list">
-      <li v-for="(item, index) in topicList" :key="index">
-        <div class="t-img">
-          <img :src="item.scene_pic_url" alt="">
-        </div>
-        <div class="info">
-          <p>{{item.title}}</p>
-          <p>{{item.subtitle}}</p>
-          <p>{{item.price_info}}元起</p>
-        </div>
-      </li>
-    </ul>
+  <div class="topicdetail">
+    <div class="content">
+      <div v-if="goods_desc" class="detail">
+        <wxParse :content="goods_desc" />
+      </div>
+    </div>
+    <div class="list">
+      <p class="title">专题推荐</p>
+      <div v-for="(item, index) in recommendList" :key="index" class="item">
+        <img :src="item.scene_pic_url" alt="">
+        <p>{{item.title}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { get } from "../../utils";
+import wxParse from "mpvue-wxparse";
 export default {
-  async onPullDownRefresh() {
-    this.page = 1;
-    this.getListData();
-    console.log("end");
-    //刷新完成后关闭
-    wx.stopPullDownRefresh();
-  },
-  onReachBottom() {
-    console.log(1111);
-    this.page = this.page + 1;
-    this.getListData();
-    //刷新完成后关闭
-    // wx.stopPullDownRefresh();
-  },
-  created() {
+  created() {},
+  mounted() {
+    this.id = this.$root.$mp.query.id;
     this.getListData();
   },
   data() {
     return {
-      topicList: [],
-      page: 1
+      recommendList: [],
+      id: "",
+      goods_desc: ""
     };
   },
-  components: {},
+  components: {
+    wxParse
+  },
   methods: {
     async getListData() {
-      console.log("start");
-      const data = await get("/topic/listaction", {
-        page: this.page
+      const data = await get("/topic/detailaction", {
+        id: this.id
       });
-      this.topicList = data.data;
+      this.goods_desc = data.data.content;
+      this.recommendList = data.recommendList;
     }
   },
   computed: {}
 };
 </script>
 <style lang='scss' scoped>
+@import url("~mpvue-wxparse/src/wxParse.css");
 @import "./style";
 </style>

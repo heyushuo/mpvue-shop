@@ -53,61 +53,59 @@
 </template>
 
 <script>
-  import {
-    get
-  } from "../../utils";
-  import wxParse from "mpvue-wxparse";
-  export default {
-    created() {
-
+import { get } from "../../utils";
+import wxParse from "mpvue-wxparse";
+export default {
+  created() {},
+  mounted() {
+    this.id = this.$root.$mp.query.id;
+    this.goodsDetail();
+    console.log(this.id);
+  },
+  data() {
+    return {
+      showpop: false,
+      gallery: [],
+      info: {},
+      brand: {},
+      attribute: [],
+      goods_desc: "",
+      id: ""
+    };
+  },
+  components: {
+    wxParse
+  },
+  methods: {
+    async goodsDetail() {
+      const data = await get("/goods/detailaction", {
+        id: this.id
+      });
+      this.gallery = data.gallery;
+      this.info = data.info;
+      this.brand = data.brand;
+      this.attribute = data.attribute;
+      this.goods_desc = data.info.goods_desc;
     },
-    mounted() {
-      this.id = this.$root.$mp.query.id;
-      this.goodsDetail();
-      console.log(this.id)
+    heyuhsuo() {
+      this.showpop = !this.showpop;
+      console.log(this.showpop);
     },
-    data() {
-      return {
-        showpop: false,
-        gallery: [],
-        info: {},
-        brand: {},
-        attribute: [],
-        goods_desc: "",
-        id: ""
-      };
+    preview(src, e) {
+      // do something
     },
-    components: {
-      wxParse
-    },
-    methods: {
-      async goodsDetail() {
-        const data = await get("/goods/detailaction", {
-          id: this.id
-        });
-        this.gallery = data.gallery;
-        this.info = data.info;
-        this.brand = data.brand;
-        this.attribute = data.attribute;
-        this.goods_desc = data.info.goods_desc
-      },
-      heyuhsuo() {
-        this.showpop = !this.showpop;
-        console.log(this.showpop);
-      },
-      preview(src, e) {
-        // do something
-      },
-      navigate(href, e) {
-        // do something
-      }
-    },
-    computed: {}
-  };
-
+    navigate(href, e) {
+      // do something
+    }
+  },
+  computed: {}
+};
 </script>
 <style lang='scss' scoped>
-  @import url("~mpvue-wxparse/src/wxParse.css");
-  @import "./style.scss";
+@import url("~mpvue-wxparse/src/wxParse.css");
+.wxParse .p {
+  margin: 0 !important;
+}
 
+@import "./style.scss";
 </style>

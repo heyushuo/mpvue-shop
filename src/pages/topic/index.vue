@@ -1,7 +1,7 @@
 <template>
   <div class="topic">
     <ul class="list">
-      <li v-for="(item, index) in topicList" :key="index">
+      <li @click="topicDetail(item.id)" v-for="(item, index) in topicList" :key="index">
         <div class="t-img">
           <img :src="item.scene_pic_url" alt="">
         </div>
@@ -20,35 +20,44 @@ import { get } from "../../utils";
 export default {
   onPullDownRefresh() {
     this.page = 1;
-    this.getListData();
-    console.log("end");
+    this.getListData(true);
     //刷新完成后关闭
     wx.stopPullDownRefresh();
   },
   onReachBottom() {
-    console.log(1111);
     this.page = this.page + 1;
+    if (this.page > this.total) {
+      return false;
+    }
     this.getListData();
-    //刷新完成后关闭
-    // wx.stopPullDownRefresh();
   },
   created() {
-    this.getListData();
+    this.getListData(true);
   },
   data() {
     return {
       topicList: [],
-      page: 1
+      page: 1,
+      total: ""
     };
   },
   components: {},
   methods: {
-    async getListData() {
-      console.log("start");
+    async getListData(first) {
       const data = await get("/topic/listaction", {
         page: this.page
       });
-      this.topicList.concat(data.data);
+      this.total = data.total;
+      if (first) {
+        this.topicList = data.data;
+      } else {
+        //上拉加载跟多
+        this.topicList = this.topicList.concat(data.data);
+      }
+    },
+    topicDetail(id) {
+      console.log(id);
+      wx.navigateTo({ url: "/pages/topicdetail/main?id=" + id });
     }
   },
   computed: {}

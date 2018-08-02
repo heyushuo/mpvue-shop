@@ -10,17 +10,17 @@
       </swiper>
     </div>
     <div class="channel">
-      <div v-for="(item, index) in channel" :key="index">
+      <div @click="categoryList(item.id)" v-for="(item, index) in channel" :key="index">
         <img :src="item.icon_url" alt="">
         <p>{{item.name}}</p>
       </div>
     </div>
     <div class="brand">
-      <div class="head">
+      <div @click="tobrandList" class="head">
         品牌制造商直供
       </div>
       <div class="content">
-        <div v-for="(item, index) in brandList" :key="index">
+        <div @click="branddetail(item.id)" v-for="(item, index) in brandList" :key="index">
           <div>
             <p>{{item.name}}</p>
             <p>{{item.floor_price}}元起</p>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="newgoods">
-      <div class="newgoods-top">
+      <div @click="goodsList('new')" class="newgoods-top">
         <div class="top">
           <p>新品首发</p>
           <p>查看全部</p>
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="newgoods hotgoods">
-      <div class="newgoods-top">
+      <div @click="goodsList('hot')" class="newgoods-top">
         <div class="top">
           <p>人气推荐
             <span></span> 好物精选</p>
@@ -71,14 +71,14 @@
       </div>
     </div>
     <div class="topicList">
-      <div class="topicList-top">
+      <div @click="totopic" class="topicList-top">
         专题精选
         <span class="icon"></span>
       </div>
       <div class="list">
         <ul>
           <scroll-view class="scroll-view" :scroll-x="true">
-            <li v-for="(item, index) in topicList" :key="index">
+            <li @click="topicdetail(item.id)" v-for="(item, index) in topicList" :key="index">
               <img :src="item.item_pic_url" alt="">
               <div class="btom">
                 <div>
@@ -116,53 +116,72 @@
 </template>
 
 <script>
-  import {
-    get
-  } from "../../utils";
-  export default {
-    data() {
-      return {
-        banner: [],
-        channel: [],
-        brandList: [],
-        newGoods: [],
-        hotGoods: [],
-        topicList: [],
-        newCategoryList: []
-      };
+import { get } from "../../utils";
+export default {
+  data() {
+    return {
+      banner: [],
+      channel: [],
+      brandList: [],
+      newGoods: [],
+      hotGoods: [],
+      topicList: [],
+      newCategoryList: []
+    };
+  },
+  components: {},
+  methods: {
+    async getData() {
+      const data = await get("/index/index");
+      this.banner = data.banner;
+      this.channel = data.channel;
+      this.brandList = data.brandList;
+      this.newGoods = data.newGoods;
+      this.hotGoods = data.hotGoods;
+      this.topicList = data.topicList;
+      this.newCategoryList = data.newCategoryList;
     },
-    components: {},
-    methods: {
-      async getData() {
-        const data = await get("/index/index");
-        this.banner = data.banner;
-        this.channel = data.channel;
-        this.brandList = data.brandList;
-        this.newGoods = data.newGoods;
-        this.hotGoods = data.hotGoods;
-        this.topicList = data.topicList;
-        this.newCategoryList = data.newCategoryList;
-      },
-      goodsDetail(id) {
+    goodsDetail(id) {
+      wx.navigateTo({
+        url: "/pages/goods/main?id=" + id
+      });
+    },
+    categoryList(id) {
+      wx.navigateTo({
+        url: "/pages/categorylist/main?id=" + id
+      });
+    },
+    goodsList(info) {
+      if (info == "hot") {
         wx.navigateTo({
-          url: '/pages/goods/main?id=' + id
+          url: "/pages/newgoods/main?isHot=" + 1
         });
-      },
-      categoryList(id) {
+      } else {
         wx.navigateTo({
-          url: '/pages/categorylist/main?id=' + id
+          url: "/pages/newgoods/main?isNew=" + 1
         });
       }
     },
-    created() {
-      // 调用应用实例的方法获取全局数据
-      this.getData();
+    topicdetail(id) {
+      wx.navigateTo({ url: "/pages/topicdetail/main?id=" + id });
+    },
+    totopic() {
+      wx.navigateTo({ url: "/pages/topic/main" });
+    },
+    tobrandList() {
+      wx.navigateTo({ url: "/pages/brandlist/main" });
+    },
+    branddetail(id) {
+      wx.navigateTo({ url: "/pages/branddetail/main?id=" + id });
     }
-  };
-
+  },
+  created() {
+    // 调用应用实例的方法获取全局数据
+    this.getData();
+  }
+};
 </script>
 
 <style lang='scss' scoped>
-  @import "./style.scss";
-
+@import "./style.scss";
 </style>

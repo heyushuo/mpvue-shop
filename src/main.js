@@ -31,7 +31,7 @@ export default {
           "text": "首页"
         },
         {
-          "pagePath": "pages/index/main",
+          "pagePath": "pages/topic/main",
           "iconPath": "static/images/ic_menu_topic_nor.png",
           "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
           "text": "专题"

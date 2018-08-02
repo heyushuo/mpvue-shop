@@ -1,0 +1,67 @@
+.newgoods {
+  .banner {
+    width: 100%;
+    height: 278rpx;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .sortnav {
+    display: flex;
+    background: #fff;
+    width: 100%;
+    height: 78rpx;
+    line-height: 78rpx;
+    div {
+      width: 250rpx;
+      height: 100%;
+      text-align: center;
+    }
+    .active {
+      color: #b4282d;
+    }
+    .price {
+      background: url(//yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/no-3127092a69.png) 165rpx center no-repeat;
+      background-size: 15rpx 21rpx;
+    }
+    .active.desc {
+      background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/down-95e035f3e5.png) 165rpx center no-repeat;
+      background-size: 15rpx 21rpx;
+    }
+    .active.asc {
+      background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/up-636b92c0a5.png) 165rpx center no-repeat;
+      background-size: 15rpx 21rpx;
+    }
+  }
+  .sortlist {
+    margin-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .item {
+      width: 372.5rpx;
+      margin-bottom: 5rpx;
+      text-align: center;
+      background: #fff;
+      padding: 15rpx 0;
+      img {
+        display: block;
+        width: 302rpx;
+        height: 302rpx;
+        margin: 0 auto;
+      }
+      .name {
+        margin: 15rpx 0 22rpx 0;
+        text-align: center;
+        padding: 0 20rpx;
+        font-size: 24rpx;
+      }
+      .price {
+        text-align: center;
+        font-size: 30rpx;
+        color: #b4282d;
+      }
+    }
+  }
+}
