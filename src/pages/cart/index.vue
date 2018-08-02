@@ -1,22 +1,22 @@
 <template>
-  <div>
-    111
-    <!-- <template> -->
-    <div>
-      <wxParse :content="artical" />
+  <div class="cart">
+    <div class="top">
+      <div>30天无忧退货</div>
+      <div>48小时快速退款</div>
+      <div>满88元免邮费</div>
     </div>
-    <!-- </template> -->
+
+    <div class="nogoods">
+      <img src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/noCart-a8fe3f12e5.png" alt="">
+    </div>
   </div>
 </template>
 
 <script>
-import wxParse from "mpvue-wxparse";
 export default {
   created() {},
   data() {
-    return {
-      artical: "<div>何玉硕</div>"
-    };
+    return {};
   },
   components: {
     wxParse
@@ -26,6 +26,5 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-@import url("~mpvue-wxparse/src/wxParse.css");
 @import "./style";
 </style>

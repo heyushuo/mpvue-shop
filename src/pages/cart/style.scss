@@ -1,0 +1,25 @@
+.cart {
+  .top {
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx 20rpx;
+    div {
+      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png) 0 center no-repeat;
+      background-size: 10rpx;
+      padding-left: 15rpx;
+      display: flex;
+      align-items: center;
+      font-size: 25rpx;
+      color: #666;
+    }
+  }
+  .nogoods {
+    margin-top: 200rpx;
+    img {
+      margin: 0 auto;
+      display: block;
+      width: 258rpx;
+      height: 258rpx;
+    }
+  }
+}
