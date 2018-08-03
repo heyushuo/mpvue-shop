@@ -117,16 +117,161 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    .attr-pop {
-      position: fixed;
-      width: 100%;
-      height: 500rpx;
-      background: black;
-      bottom: 0rpx;
+  }
+  .attr-pop {
+    position: fixed;
+    width: 100%;
+    height: 500rpx;
+    bottom: -500rpx;
+    transition: all 400ms ease;
+    box-sizing: border-box;
+    padding: 30rpx;
+    background: #fff;
+    .top {
+      display: flex;
+      margin-bottom: 35rpx;
+      position: relative;
+      .close {
+        position: absolute;
+        right: 0;
+        top: 0px;
+        font-size: 30rpx;
+        color: #999;
+      }
+      .left {
+        height: 177rpx;
+        width: 177rpx;
+        margin-right: 30rpx;
+        img {
+          float: left;
+          height: 177rpx;
+          width: 177rpx;
+        }
+      }
+      .right {
+        flex: 1;
+        display: flex;
+        align-items: flex-end;
+        p {
+          width: 100%;
+          line-height: 45rpx;
+        }
+        p:nth-child(1) {
+          color: #b4282d;
+        }
+      }
     }
-    .fadeup {
-      transform: translateY(-200rpx);
-      transition: all 0.4s ease;
+    .b {
+      .count {
+        width: 322rpx;
+        height: 71rpx;
+        line-height: 71rpx;
+        display: flex;
+        border: 1px solid #ccc;
+        margin-top: 20rpx;
+        div {
+          width: 90rpx;
+          text-align: center;
+        }
+        input {
+          flex: 1;
+          height: 100%;
+          text-align: center;
+          border-left: 1px solid #ccc;
+          border-right: 1px solid #ccc;
+        }
+      }
+    }
+  }
+  .fadeup {
+    transform: translateY(-500rpx); // transition: all 0.4s ease;
+  }
+  .fadedown {}
+  .bottom-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 750rpx;
+    height: 100rpx;
+    display: flex;
+    background: #fff;
+    z-index: 10;
+    div:nth-child(1) {
+      height: 100rpx;
+      width: 162rpx;
+      border: 1px solid #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .collect {
+        display: block;
+        height: 44rpx;
+        width: 44rpx;
+        background: url('../../../static/images/icon_collect.png') no-repeat;
+        background-size: 100% 100%;
+      }
+      .collect.active {
+        display: block;
+        height: 44rpx;
+        width: 44rpx;
+        background: url('../../../static/images/icon_collect_checked.png') no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    div:nth-child(2) {
+      height: 100rpx;
+      width: 162rpx;
+      border: 1px solid #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .car {
+        position: relative;
+        height: 60rpx;
+        width: 60rpx;
+        span {
+          height: 28rpx;
+          width: 28rpx;
+          z-index: 10;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: #b4282d;
+          text-align: center;
+          font-size: 18rpx;
+          color: #fff;
+          line-height: 28rpx;
+          border-radius: 50%;
+        }
+        img {
+          display: block;
+          height: 44rpx;
+          width: 44rpx;
+          position: absolute;
+          top: 10rpx;
+          left: 0;
+        }
+      }
+    }
+    div:nth-child(3) {
+      height: 100rpx;
+      line-height: 96rpx;
+      flex: 1;
+      text-align: center;
+      color: #333;
+      border-top: 1px solid #f4f4f4;
+      border-bottom: 1px solid #f4f4f4;
+    }
+    div:nth-child(4) {
+      border: 1px solid #b4282d;
+      background: #b4282d;
+      float: left;
+      height: 100rpx;
+      line-height: 96rpx;
+      flex: 1;
+      text-align: center;
+      color: #fff;
     }
   }
 }

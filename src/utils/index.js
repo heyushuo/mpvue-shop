@@ -68,16 +68,10 @@ export function login() {
     wx.navigateTo({
       url: "/pages/login/main"
     });
+  } else {
+    return userInfo;
   }
 }
 
 
 //----------------------------------------------用户是否登录 未登录跳转到登录页面 -------------------------
-
-
-// export default {
-//   get,
-//   post,
-//   formatNumber,
-//   formatTime
-// }

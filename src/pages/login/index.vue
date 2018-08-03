@@ -27,6 +27,8 @@ export default {
         qcloud.loginWithCode({
           success: res => {
             // this.setData({ userInfo: res, logged: true });
+            console.log(res);
+            wx.setStorageSync("key", "value");
           },
           fail: err => {
             console.error(err);
@@ -36,7 +38,8 @@ export default {
         // 首次登录
         qcloud.login({
           success: res => {
-            // this.setData({ userInfo: res, logged: true });
+            wx.setStorageSync("userInfo", res);
+            wx.navigateBack({});
           },
           fail: err => {
             wx.navigateBack({});

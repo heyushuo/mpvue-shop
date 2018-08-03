@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="section-nav">
+    <div @click="showType" class="section-nav">
       <div>请选择规格数量</div>
       <div></div>
     </div>
@@ -41,20 +41,61 @@
     <div v-if="goods_desc" class="detail">
       <wxParse :content="goods_desc" />
     </div>
+    <div class="bottom-fixed">
+      <div @click="collect">
+        <div class="collect" :class="[collectFlag ? 'active' :'']">
 
-    <!-- 选择规格部分 -->
-    <!-- <div class="pop" @click="heyuhsuo">
-      <div class="attr-pop" :class="[showpop ? fadeup : fadedown]">
+        </div>
 
       </div>
-    </div> -->
+      <div @click="toCart">
+        <div class="car">
+          <span>
+            {{number}}
+          </span>
+          <img src="../../../static/images/ic_menu_shoping_nor.png" alt="">
+        </div>
+      </div>
+      <div @click="bug">立即购买</div>
+      <div @click="addCart">加入购物车</div>
+    </div>
+    <!-- 选择规格部分 -->
+    <div v-show="showpop" class="pop">
+
+    </div>
+    <div class="attr-pop" :class="[showpop ? 'fadeup' : 'fadedown']">
+      <div class="top">
+        <div class="left">
+          <img :src="info.primary_pic_url" alt="">
+        </div>
+        <div class="right">
+          <div>
+            <p>价格￥{{info.retail_price}}</p>
+            <p>请选择数量</p>
+          </div>
+        </div>
+        <div @click="showType" class="close">
+          X
+        </div>
+      </div>
+      <div class="b">
+        <p>数量</p>
+        <div class="count">
+          <div @click="reduce" class="cut">-</div>
+          <input class="number" disabled="" v-model="number" />
+          <div @click="add" class="add">+</div>
+        </div>
+      </div>
+    </div>
+
     <!-- 选择规格部分 -->
   </div>
 </template>
 
 <script>
-import { get } from "../../utils";
+import { get, post, login } from "../../utils";
 import wxParse from "mpvue-wxparse";
+
 export default {
   created() {},
   mounted() {
@@ -64,38 +105,73 @@ export default {
   },
   data() {
     return {
-      showpop: false,
+      collectFlag: false,
+      number: 1,
+      showpop: true,
       gallery: [],
       info: {},
       brand: {},
       attribute: [],
       goods_desc: "",
-      id: ""
+      id: "",
+      openId: "",
+      goodsId: ""
     };
   },
   components: {
     wxParse
   },
   methods: {
+    add() {
+      this.number = this.number + 1;
+    },
+    reduce() {
+      if (this.number > 1) {
+        this.number = this.number - 1;
+      } else {
+        return false;
+      }
+    },
+    bug() {
+      if (login()) {
+      }
+    },
+    async collect() {
+      if (login()) {
+        this.collectFlag = !this.collectFlag;
+        const userInfo = login();
+        this.openId = userInfo.openId;
+        const data = await post("/collect/addcollect", { openId: this.openId, goodsId: this.goodsId });
+      }
+    },
+    addCart() {
+      if (login()) {
+        wx.showToast({
+          title: "添加购物车成功",
+          icon: "success",
+          duration: 1500
+        });
+      }
+    },
+    toCart() {
+      if (login()) {
+      }
+    },
     async goodsDetail() {
       const data = await get("/goods/detailaction", {
-        id: this.id
+        id: this.id || 1134030
       });
       this.gallery = data.gallery;
       this.info = data.info;
+
+      this.goodsId = data.info.id;
       this.brand = data.brand;
       this.attribute = data.attribute;
       this.goods_desc = data.info.goods_desc;
     },
-    heyuhsuo() {
+    showType() {
       this.showpop = !this.showpop;
       console.log(this.showpop);
-    },
-    preview(src, e) {
-      // do something
-    },
-    navigate(href, e) {
-      // do something
     }
   },
   computed: {}
