@@ -18,6 +18,9 @@ export function formatTime(date) {
   return `${t1} ${t2}`
 }
 
+
+//-------------------------------------------------------------------------请求的封装
+
 const host = 'http://192.168.2.1:9996/heyushuo'
 //请求封装
 function request(url, method, data, header = {}) {
@@ -46,7 +49,6 @@ function request(url, method, data, header = {}) {
     })
   })
 }
-
 export function get(url, data) {
   return request(url, 'GET', data)
 }
@@ -54,9 +56,28 @@ export function post(url, data) {
   return request(url, 'POST', data)
 }
 
-export default {
-  get,
-  post,
-  formatNumber,
-  formatTime
+//-------------------------------------------------------------------------请求的封装
+
+
+//----------------------------------------------用户是否登录 未登录跳转到登录页面 -------------------------
+
+
+export function login() {
+  const userInfo = wx.getStorageSync('userInfo');
+  if (!userInfo) {
+    wx.navigateTo({
+      url: "/pages/login/main"
+    });
+  }
 }
+
+
+//----------------------------------------------用户是否登录 未登录跳转到登录页面 -------------------------
+
+
+// export default {
+//   get,
+//   post,
+//   formatNumber,
+//   formatTime
+// }
