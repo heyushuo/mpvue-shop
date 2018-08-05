@@ -1,0 +1,15 @@
+.my {
+  .myinfo {
+    width: 100%;
+    height: 280rpx;
+    display: flex;
+    align-items: center;
+    background: #333;
+    padding: 0 30rpx;
+    img {
+      height: 148rpx;
+      width: 148rpx;
+      border-radius: 50%
+    }
+  }
+}
