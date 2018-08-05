@@ -13,6 +13,93 @@
       color: #666;
     }
   }
+  .cartlist {
+    background: #fff;
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20rpx 0;
+      border-bottom: 1rpx solid #f4f4f4;
+      .left {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        .icon {
+          height: 34rpx;
+          width: 34rpx;
+          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat;
+          background-size: 100% 100%;
+          margin: 0 20rpx;
+        }
+        .icon.active {
+          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat;
+          background-size: 100% 100%;
+        }
+        .img {
+          height: 125rpx;
+          width: 125rpx;
+          display: block;
+          background: #f4f4f4;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .info {
+          width: 50%;
+          padding: 20rpx;
+          p {
+            line-height: 40rpx;
+          }
+        }
+      }
+      .right {
+        padding-right: 50rpx;
+      }
+    }
+  }
+  .fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100rpx;
+    line-height: 100rpx;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .left {
+      display: flex;
+      align-items: center;
+      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat;
+      background-size: 34rpx 34rpx;
+      background-position: 20rpx;
+      padding-left: 70rpx;
+    }
+    .active {
+      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat;
+      background-size: 34rpx 34rpx;
+      background-position: 20rpx;
+    }
+    .right {
+      display: flex;
+      div:nth-child(1) {
+        color: #b4282d;
+        padding-right: 40rpx;
+      }
+      div:nth-child(2) {
+        width: 200rpx;
+        height: 100rpx;
+        text-align: center;
+        line-height: 100rpx;
+        font-size: 29rpx;
+        background: #b4282d;
+        color: #fff;
+      }
+    }
+  }
   .nogoods {
     margin-top: 200rpx;
     img {

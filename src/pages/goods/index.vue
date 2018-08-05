@@ -93,95 +93,117 @@
 </template>
 
 <script>
-import { get, post, login } from "../../utils";
-import wxParse from "mpvue-wxparse";
+  import {
+    get,
+    post,
+    toLogin,
+    login
+  } from "../../utils";
+  import wxParse from "mpvue-wxparse";
 
-export default {
-  created() {},
-  mounted() {
-    this.id = this.$root.$mp.query.id;
-    this.goodsDetail();
-    console.log(this.id);
-  },
-  data() {
-    return {
-      collectFlag: false,
-      number: 1,
-      showpop: true,
-      gallery: [],
-      info: {},
-      brand: {},
-      attribute: [],
-      goods_desc: "",
-      id: "",
-      openId: "",
-      goodsId: ""
-    };
-  },
-  components: {
-    wxParse
-  },
-  methods: {
-    add() {
-      this.number = this.number + 1;
-    },
-    reduce() {
-      if (this.number > 1) {
-        this.number = this.number - 1;
-      } else {
-        return false;
+  export default {
+    created() {
+      //判断是否登录获取用户信息
+      if (login()) {
+        this.userInfo = login();
       }
     },
-    bug() {
-      if (login()) {
-      }
+    mounted() {
+      this.id = this.$root.$mp.query.id;
+      this.goodsDetail();
+      console.log(this.id);
     },
-    async collect() {
-      if (login()) {
-        this.collectFlag = !this.collectFlag;
-        const userInfo = login();
-        this.openId = userInfo.openId;
-        const data = await post("/collect/addcollect", { openId: this.openId, goodsId: this.goodsId });
-      }
+    data() {
+      return {
+        collectFlag: false,
+        number: 1,
+        showpop: true,
+        gallery: [],
+        info: {},
+        brand: {},
+        attribute: [],
+        goods_desc: "",
+        id: "",
+        userInfo: "",
+        goodsId: ""
+      };
     },
-    addCart() {
-      if (login()) {
-        wx.showToast({
-          title: "添加购物车成功",
-          icon: "success",
-          duration: 1500
+    components: {
+      wxParse
+    },
+    methods: {
+      add() {
+        this.number = this.number + 1;
+      },
+      reduce() {
+        if (this.number > 1) {
+          this.number = this.number - 1;
+        } else {
+          return false;
+        }
+      },
+      bug() {
+        if (toLogin()) {}
+      },
+      async collect() {
+        if (toLogin()) {
+          this.collectFlag = !this.collectFlag;
+          const data = await post("/collect/addcollect", {
+            openId: this.userInfo.openId,
+            goodsId: this.goodsId
+          });
+        }
+      },
+      async addCart() {
+        if (toLogin()) {
+          const data = await post("/cart/addCart", {
+            openId: this.userInfo.openId,
+            goodsId: this.goodsId,
+            number: this.number
+          })
+          //添加成功后
+          if (data) {
+            wx.showToast({
+              title: "添加购物车成功",
+              icon: "success",
+              duration: 1500
+            });
+          }
+
+        }
+      },
+      toCart() {
+        wx.navigateTo({
+          url: '/pages/cart/main'
         });
-      }
-    },
-    toCart() {
-      if (login()) {
-      }
-    },
-    async goodsDetail() {
-      const data = await get("/goods/detailaction", {
-        id: this.id || 1134030
-      });
-      this.gallery = data.gallery;
-      this.info = data.info;
+      },
+      async goodsDetail() {
+        const data = await get("/goods/detailaction", {
+          id: this.id
+        });
+        this.gallery = data.gallery;
+        this.info = data.info;
 
-      this.goodsId = data.info.id;
-      this.brand = data.brand;
-      this.attribute = data.attribute;
-      this.goods_desc = data.info.goods_desc;
+        this.goodsId = data.info.id;
+        this.brand = data.brand;
+        this.attribute = data.attribute;
+        this.goods_desc = data.info.goods_desc;
+      },
+      showType() {
+        this.showpop = !this.showpop;
+        console.log(this.showpop);
+      }
     },
-    showType() {
-      this.showpop = !this.showpop;
-      console.log(this.showpop);
-    }
-  },
-  computed: {}
-};
+    computed: {}
+  };
+
 </script>
 <style lang='scss' scoped>
-@import url("~mpvue-wxparse/src/wxParse.css");
-.wxParse .p {
-  margin: 0 !important;
-}
+  @import url("~mpvue-wxparse/src/wxParse.css");
+  .wxParse .p {
+    margin: 0 !important;
+  }
 
-@import "./style.scss";
+  @import "./style.scss";
+
 </style>
