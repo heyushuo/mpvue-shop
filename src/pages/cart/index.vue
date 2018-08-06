@@ -7,21 +7,27 @@
     </div>
     <div class="cartlist">
       <!--  -->
-      <div class="item" v-for="(item,index) in listData" :key="index">
-        <div class="left">
-          <div class="icon" @click="changeColor(index)" :class="[ Listids[index] ? 'active' : '',{active:allcheck}]"></div>
-          <div class="img">
-            <img :src="item.list_pic_url" alt="">
+      <div class="item" @touchstart="startMove" @touchmove="deleteGoods" v-for="(item,index) in listData" :key="index">
+        <div class="con" :style="{transform:'translateX(' + tranX + 'rpx)'}">
+          <div class="left">
+            <div class="icon" @click="changeColor(index)" :class="[ Listids[index] ? 'active' : '',{active:allcheck}]"></div>
+            <div class="img">
+              <img :src="item.list_pic_url" alt="">
+            </div>
+            <div class="info">
+              <p>{{item.goods_name}}</p>
+              <p>￥{{item.retail_price}}</p>
+            </div>
           </div>
-          <div class="info">
-            <p>{{item.goods_name}}</p>
-            <p>￥{{item.retail_price}}</p>
+          <div class="right">
+            <div class="num">
+              x{{item.number}}
+            </div>
           </div>
         </div>
-        <div class="right">
-          <div class="num">
-            x{{item.number}}
-          </div>
+
+        <div class="delete" :style="{transform:'translateX(' + tranX + 'rpx)'}">
+          删除
         </div>
 
       </div>
@@ -64,11 +70,38 @@ export default {
       allcheck: false,
       listData: [],
       Listids: [],
-      userInfo: {}
+      userInfo: {},
+      startX: 0,
+      startY: 0,
+      moveEndX: 0,
+      moveEndY: 0,
+      tranX: 0
     };
   },
   components: {},
   methods: {
+    startMove(e) {
+      this.startX = e.touches[0].pageX;
+      this.startY = e.touches[0].pageY;
+    },
+    deleteGoods(e) {
+      this.moveEndX = e.touches[0].pageX;
+      this.moveEndY = e.touches[0].pageY;
+      let X = this.moveEndX - this.startX;
+      let Y = this.moveEndX - this.startY;
+      if (X >= 100) {
+        X = 0;
+      }
+      if (X <= -100) {
+        X = -100;
+      }
+      this.tranX = X;
+      if (Math.abs(X) > Math.abs(Y) && X > 0) {
+        console.log("left 2 right");
+      } else if (Math.abs(X) > Math.abs(Y) && X < 0) {
+        console.log("right 2 left");
+      }
+    },
     orderDown() {
       console.log(this.Listids.length);
 

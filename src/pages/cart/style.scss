@@ -16,46 +16,62 @@
   .cartlist {
     background: #fff;
     .item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       padding: 20rpx 0;
       border-bottom: 1rpx solid #f4f4f4;
-      .left {
+      height: 166rpx;
+      position: relative;
+      .con {
         display: flex;
         align-items: center;
-        width: 80%;
-        .icon {
-          height: 125rpx;
-          width: 34rpx;
-          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
-          background-size: 34rpx 34rpx;
-          margin: 0 20rpx;
-        }
-        .icon.active {
-          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
-          background-size: 34rpx 34rpx;
-        }
-        .img {
-          height: 125rpx;
-          width: 125rpx;
-          display: block;
-          background: #f4f4f4;
-          img {
-            width: 100%;
-            height: 100%;
+        justify-content: space-between;
+        transition: all 300ms ease;
+        .left {
+          display: flex;
+          align-items: center;
+          width: 80%;
+          .icon {
+            height: 125rpx;
+            width: 34rpx;
+            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
+            background-size: 34rpx 34rpx;
+            margin: 0 20rpx;
+          }
+          .icon.active {
+            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
+            background-size: 34rpx 34rpx;
+          }
+          .img {
+            height: 125rpx;
+            width: 125rpx;
+            display: block;
+            background: #f4f4f4;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .info {
+            width: 50%;
+            padding: 20rpx;
+            p {
+              line-height: 40rpx;
+            }
           }
         }
-        .info {
-          width: 50%;
-          padding: 20rpx;
-          p {
-            line-height: 40rpx;
-          }
+        .right {
+          padding-right: 50rpx;
         }
       }
-      .right {
-        padding-right: 50rpx;
+      .delete {
+        position: absolute;
+        width: 100rpx;
+        top: 0;
+        right: -100rpx;
+        text-align: center;
+        height: 166rpx;
+        background: #b4282d;
+        color: #fff;
+        transition: all 200ms ease;
       }
     }
   }
