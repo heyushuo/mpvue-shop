@@ -26,15 +26,15 @@
         align-items: center;
         width: 80%;
         .icon {
-          height: 34rpx;
+          height: 125rpx;
           width: 34rpx;
-          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat;
-          background-size: 100% 100%;
+          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
+          background-size: 34rpx 34rpx;
           margin: 0 20rpx;
         }
         .icon.active {
-          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat;
-          background-size: 100% 100%;
+          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
+          background-size: 34rpx 34rpx;
         }
         .img {
           height: 125rpx;

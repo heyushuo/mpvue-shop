@@ -37,89 +37,106 @@
         <div>
           ￥{{allPrise}}
         </div>
-        <div>下单</div>
+        <div @click="orderDown">下单</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {
-    get,
-    login
-  } from '../../utils'
-  export default {
-    created() {
-      // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-      if (login()) {
-        this.userInfo = login();
-        this.getListData();
-      }
-    },
-    data() {
-      return {
-        allcheck: false,
-        listData: [],
-        Listids: [],
-        userInfo: {},
-      };
-    },
-    components: {},
-    methods: {
-      async getListData() {
-        const data = await get("/cart/cartList", {
-          "openId": this.userInfo.openId
-        })
-        this.listData = data.data;
-        console.log(this.listData)
-      },
-      allCheck() {
-        if (this.allcheck) {
-          this.allcheck = false;
-          this.Listids = [];
-        } else {
-          this.allcheck = true;
-          this.Listids = this.listData;
-        }
-      },
-      change(e) {
+import { get, login } from "../../utils";
+export default {
+  onShow() {
+    if (login()) {
+      this.userInfo = login();
+      this.getListData();
+    }
+  },
+  created() {
+    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+    if (login()) {
+      this.userInfo = login();
+      this.getListData();
+    }
+  },
+  data() {
+    return {
+      allcheck: false,
+      listData: [],
+      Listids: [],
+      userInfo: {}
+    };
+  },
+  components: {},
+  methods: {
+    orderDown() {
+      console.log(this.Listids.length);
 
-      },
-      changeColor(index) {
-        if (this.Listids[index]) {
-          this.$set(this.Listids, index, false);
-        } else {
-          this.$set(this.Listids, index, true);
-        }
+      if (this.Listids.length == 0) {
+        wx.showToast({
+          title: "请选择商品",
+          icon: "none",
+          duration: 1500
+        });
       }
     },
-    computed: {
-      isCheckedNumber() {
-        let number = 0;
-        for (let i = 0; i < this.Listids.length; i++) {
-          if (this.Listids[i]) {
-            number++;
-          }
-        }
-        if (number == this.listData.length) {
-          this.allcheck = true;
-        }
-        return number;
-      },
-      allPrise() {
-        var Prise = 0;
-        for (let i = 0; i < this.Listids.length; i++) {
-          if (this.Listids[i]) {
-            Prise = Prise + this.listData[i].retail_price * this.listData[i].number
-          }
-        }
-        return Prise;
+    async getListData() {
+      const data = await get("/cart/cartList", {
+        openId: this.userInfo.openId
+      });
+      this.listData = data.data;
+      console.log(this.listData);
+      console.log(this.Listids);
+    },
+    allCheck() {
+      if (this.allcheck) {
+        this.allcheck = false;
+        this.Listids = [];
+      } else {
+        this.allcheck = true;
+        this.Listids = this.listData;
+      }
+    },
+    change(e) {},
+    changeColor(index) {
+      if (this.Listids[index]) {
+        this.$set(this.Listids, index, false);
+      } else {
+        this.$set(this.Listids, index, true);
       }
     }
-  };
+  },
+  computed: {
+    isCheckedNumber() {
+      let number = 0;
+      for (let i = 0; i < this.Listids.length; i++) {
+        if (this.Listids[i]) {
+          number++;
+        }
+      }
+      console.log(number);
 
+      if (number == this.listData.length) {
+        console.log("zzzz");
+
+        this.allcheck = true;
+      }
+      console.log(this.allcheck);
+
+      return number;
+    },
+    allPrise() {
+      var Prise = 0;
+      for (let i = 0; i < this.Listids.length; i++) {
+        if (this.Listids[i]) {
+          Prise = Prise + this.listData[i].retail_price * this.listData[i].number;
+        }
+      }
+      return Prise;
+    }
+  }
+};
 </script>
 <style lang='scss' scoped>
-  @import "./style";
-
+@import "./style";
 </style>
