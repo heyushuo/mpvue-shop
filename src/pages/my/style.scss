@@ -11,5 +11,39 @@
       width: 148rpx;
       border-radius: 50%
     }
+    div {
+      margin-left: 30rpx;
+      p {
+        color: #fff;
+        font-size: 30rpx;
+        margin-bottom: 5rpx
+      }
+      p:nth-child(2) {
+        font-size: 28rpx;
+      }
+    }
+  }
+  .iconlist {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    flex-wrap: wrap;
+    div {
+      width: 33.33%;
+      padding: 50rpx 0;
+      text-align: center;
+      border-right: 1px solid rgba(0, 0, 0, .15);
+      border-bottom: 1px solid rgba(0, 0, 0, .15);
+      box-sizing: border-box;
+      span {
+        display: block;
+      }
+      span:nth-child(1) {
+        margin-bottom: 10rpx;
+      }
+    }
+    div:nth-child(3n+3) {
+      border-right: none;
+    }
   }
 }
