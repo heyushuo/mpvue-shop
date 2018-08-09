@@ -150,15 +150,10 @@
             number++;
           }
         }
-        console.log(number);
-
         if (number == this.listData.length && number != 0) {
-          console.log("zzzz");
-
           this.allcheck = true;
         }
         console.log(this.allcheck);
-
         return number;
       },
       allPrise() {
