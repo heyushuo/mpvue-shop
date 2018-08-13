@@ -1,0 +1,32 @@
+.search {
+  .head {
+    height: 91rpx;
+    display: flex;
+    padding: 0 32rpx;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    div:nth-child(1) {
+      height: 59rpx;
+      display: flex;
+      align-items: center;
+      background: #f4f4f4;
+      img {
+        display: inline-block;
+        width: 31rpx;
+        height: 31rpx;
+        padding: 0 20rpx;
+      }
+      input {
+        display: inline-block;
+        width: 506rpx;
+        height: 59rpx;
+        margin-left: 10rpx;
+      }
+    }
+    div:nth-child(2) {
+      flex: 1;
+      text-align: center;
+    }
+  }
+}
