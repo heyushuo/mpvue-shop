@@ -1,4 +1,6 @@
 .search {
+  height: 100%;
+  position: relative;
   .head {
     height: 91rpx;
     display: flex;
@@ -28,5 +30,57 @@
       flex: 1;
       text-align: center;
     }
+  }
+  .searchtips {
+    position: absolute;
+    width: 100%;
+    top: 91rpx;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 0 32rpx;
+    z-index: 9;
+    background: #fff;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    div {
+      padding: 20rpx 0;
+    }
+    .nogoods {
+      text-align: center;
+      margin-top: 300rpx;
+    }
+  }
+  .history {
+    background: #fff;
+    padding: 32rpx;
+    .t {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30rpx;
+      div:nth-child(2) {
+        width: 55rpx;
+        height: 55rpx;
+        background: url('http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/del1-93f0a4add4.png') no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .cont {
+      display: flex;
+      flex-wrap: wrap;
+      div {
+        padding: 10rpx 10rpx;
+        border: 1px solid #999;
+        margin: 0 30rpx 20rpx 0;
+      }
+      .active {
+        border: 1px solid #b4282d;
+        color: #b4282d;
+      }
+    }
+  }
+  .hotsearch {
+    margin-top: 20rpx;
   }
 }
