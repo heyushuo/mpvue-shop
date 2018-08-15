@@ -3,7 +3,8 @@
     <div class="head">
       <div>
         <img src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/search2-2fb94833aa.png" alt="">
-        <input type="text" confirm-type="search" focus="true" v-model="words" @input="tipsearch" @confirm="searchWords" placeholder="商品搜索">
+        <input type="text" confirm-type="search" focus="true" v-model="words" @focus="inputFocus" @input="tipsearch" @confirm="searchWords"
+          placeholder="商品搜索">
         <!-- <input name="input" class="keywrod" focus="true" value="{{keyword}}" confirm-type="search" bindinput="inputChange" bindfocus="inputFocus" bindconfirm="onKeywordConfirm" confirm-type="search" placeholder="{{defaultKeyword.keyword}}" /> -->
         <img @click="clearInput" class="del" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/clearIpt-f71b83e3c2.png"
           alt="">
@@ -92,6 +93,12 @@
         this.words = '';
         this.listData = [];
         this.tipsData = []
+      },
+      inputFocus() {
+        //商品清空
+        this.listData = []
+        //展示搜索提示信息
+        this.tipsearch();
       },
       async getlistData() {
         //获取商品列表
