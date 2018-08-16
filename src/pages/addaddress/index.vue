@@ -13,23 +13,30 @@
       <input type="text" placeholder="详细地址，如楼道、楼盘号等" v-model="detailadress">
     </div>
     <div class="item itemend">
-      <label class="checkbox">
-        <checkbox class="box" value="设置为默认地址" color="#B4282D" checked="" />设置为默认地址
-      </label>
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox">
+          <checkbox @change="checkboxChange" class="box" value="设置为默认地址" color="#B4282D" :checked="checked" />设置为默认地址
+        </label>
+      </checkbox-group>
+      <!-- <label class="checkbox">
+        <checkbox @change="checkboxChange" class="box" value="设置为默认地址" color="#B4282D" :checked="checked" />设置为默认地址
+      </label> -->
       <!-- <div>
         <checkbox class="radio" color="#B4282D" value="" /> </div> -->
       <div @click="wxaddress">一键导入微信></div>
     </div>
-    <div class="bottom">
+    <div @click="saveAddress" class="bottom">
       保存
     </div>
   </div>
 </template>
 
 <script>
-import card from "@/components/card";
+import { get, post } from "../../utils";
 export default {
-  created() {},
+  created() {
+    this.openId = wx.getStorageSync("openid") || "";
+  },
   mounted() {
     if (this.$root.$mp.query.res) {
       this.res = JSON.parse(decodeURIComponent(this.$root.$mp.query.res));
@@ -42,19 +49,22 @@ export default {
   },
   data() {
     return {
+      openId: "",
       res: {},
       userName: "",
       telNumber: "",
       address: "",
-      detailadress: ""
+      detailadress: "",
+      checked: false
     };
   },
-
-  components: {
-    card
-  },
-
   methods: {
+    checkboxChange(e) {
+      console.log(e.detail);
+    },
+    saveAddress() {
+      post("/address/saveAction");
+    },
     wxaddress() {
       var _this = this;
       wx.chooseAddress({

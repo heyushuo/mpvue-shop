@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { post, get, getOpenid } from "../../utils";
+import { post, get } from "../../utils";
 export default {
   created() {
     this.openid = wx.getStorageSync("openid") || "";
