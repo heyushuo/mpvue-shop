@@ -20,6 +20,9 @@
         <checkbox class="radio" color="#B4282D" value="" /> </div> -->
       <div @click="wxaddress">一键导入微信></div>
     </div>
+    <div class="bottom">
+      保存
+    </div>
   </div>
 </template>
 

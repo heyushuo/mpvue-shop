@@ -4,7 +4,7 @@
       <p>收货地址在哪里?</p>
     </div>
     <div class="bottom">
-      <div>+新建地址</div>
+      <div @click="wxaddress(1)">+新建地址</div>
       <div @click="wxaddress">一键导入微信地址</div>
     </div>
   </div>
@@ -33,13 +33,17 @@ export default {
   },
 
   methods: {
-    wxaddress() {
-      wx.chooseAddress({
-        success: function(res) {
-          var res = encodeURIComponent(JSON.stringify(res));
-          wx.navigateTo({ url: "/pages/addaddress/main?res=" + res });
-        }
-      });
+    wxaddress(index) {
+      if (index == 1) {
+        wx.navigateTo({ url: "/pages/addaddress/main" });
+      } else {
+        wx.chooseAddress({
+          success: function(res) {
+            var res = encodeURIComponent(JSON.stringify(res));
+            wx.navigateTo({ url: "/pages/addaddress/main?res=" + res });
+          }
+        });
+      }
     },
     onShareAppMessage(res) {
       console.log(res);
