@@ -1,0 +1,43 @@
+.address {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  .center {
+    width: 248rpx;
+    height: 248rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -80%, 0);
+    background: url('http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png') no-repeat;
+    background-size: 100% 100%;
+    p {
+      position: absolute;
+      bottom: -20rpx;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+  .bottom {
+    position: absolute;
+    bottom: 30rpx;
+    left: 0;
+    right: 0;
+    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 330rpx;
+      height: 50rpx;
+      line-height: 50rpx;
+      text-align: center;
+      border: 1px solid #B4282D;
+      color: #B4282D;
+    }
+    div:nth-child(2) {
+      border: 1px solid green;
+      color: green;
+    }
+  }
+}

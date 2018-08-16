@@ -1,0 +1,27 @@
+.addaddress {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  .item {
+    width: 690rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin: 0 auto;
+    padding: 10rpx 0;
+    border-bottom: 1px solid #f4f4f4;
+    input {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .itemend {
+    margin-top: 40rpx;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    div:nth-child(2) {
+      color: green;
+    }
+  }
+}
