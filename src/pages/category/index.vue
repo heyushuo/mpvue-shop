@@ -1,6 +1,6 @@
 <template>
   <div class="category">
-    <div class="search">
+    <div class="search" @click="tosearch">
       <div class="ser">
         <span class="icon"></span>
         <span>商品搜索,共239款好物</span>
@@ -52,6 +52,9 @@ export default {
   },
   components: {},
   methods: {
+    tosearch() {
+      wx.navigateTo({ url: "/pages/search/main" });
+    },
     async selectitem(id, index) {
       this.nowIndex = index;
       const data = await get("/category/currentaction", {
