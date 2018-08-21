@@ -13,16 +13,11 @@
       <input type="text" placeholder="详细地址，如楼道、楼盘号等" v-model="detailadress">
     </div>
     <div class="item itemend">
-      <checkbox-group bindchange="checkboxChange">
+      <checkbox-group @change="checkboxChange">
         <label class="checkbox">
-          <checkbox @change="checkboxChange" class="box" value="设置为默认地址" color="#B4282D" :checked="checked" />设置为默认地址
+          <checkbox class="box" value="true" color="#B4282D" />设置为默认地址
         </label>
       </checkbox-group>
-      <!-- <label class="checkbox">
-        <checkbox @change="checkboxChange" class="box" value="设置为默认地址" color="#B4282D" :checked="checked" />设置为默认地址
-      </label> -->
-      <!-- <div>
-        <checkbox class="radio" color="#B4282D" value="" /> </div> -->
       <div @click="wxaddress">一键导入微信></div>
     </div>
     <div @click="saveAddress" class="bottom">
@@ -32,10 +27,10 @@
 </template>
 
 <script>
-import { get, post } from "../../utils";
+import { get, post, getStorageOpenid } from "../../utils";
 export default {
   created() {
-    this.openId = wx.getStorageSync("openid") || "";
+    this.openId = getStorageOpenid();
   },
   mounted() {
     if (this.$root.$mp.query.res) {
@@ -60,19 +55,48 @@ export default {
   },
   methods: {
     checkboxChange(e) {
-      console.log(e.detail);
+      this.checked = e.mp.detail.value[0];
     },
-    saveAddress() {
-      post("/address/saveAction");
+    async saveAddress() {
+      var _this = this;
+      var obj = {
+        userName: _this.userName,
+        telNumber: _this.telNumber,
+        address: _this.address,
+        detailadress: _this.detailadress,
+        checked: _this.checked,
+        openId: _this.openId
+      };
+      const data = await post("/address/saveAction", {
+        userName: _this.userName,
+        telNumber: _this.telNumber,
+        address: _this.address,
+        detailadress: _this.detailadress,
+        checked: _this.checked,
+        openId: _this.openId
+      });
+      if (data.data) {
+        wx.showToast({
+          title: "添加成功", //提示的内容,
+          icon: "success", //图标,
+          duration: 2000, //延迟时间,
+          mask: true, //显示透明蒙层，防止触摸穿透,
+          success: res => {
+            wx.navigateBack({
+              delta: 1 //返回的页面数，如果 delta 大于现有页面数，则返回到首页,
+            });
+          }
+        });
+      }
     },
     wxaddress() {
       var _this = this;
       wx.chooseAddress({
         success: function(res) {
-          _this.userName = _this.res.userName;
-          _this.telNumber = _this.res.telNumber;
-          _this.address = `${_this.res.provinceName} ${_this.res.cityName} ${_this.res.countyName}`;
-          _this.detailadress = _this.res.detailInfo;
+          _this.userName = res.userName;
+          _this.telNumber = res.telNumber;
+          _this.address = `${res.provinceName} ${res.cityName} ${res.countyName}`;
+          _this.detailadress = res.detailInfo;
         }
       });
     }

@@ -83,6 +83,18 @@ export function login() {
 //----------------------------------------------用户是否登录 未登录跳转到登录页面 -------------------------
 
 
+export function getStorageOpenid() {
+  const openId = wx.getStorageSync("openid");
+  if (openId) {
+    return openId;
+  } else {
+    return ''
+  }
+}
+
+
+
+
 export function getOpenid() {
   wx.login({
     success: res => {
