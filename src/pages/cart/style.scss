@@ -73,6 +73,12 @@
         background: #b4282d;
         color: #fff;
         transition: all 200ms ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div {
+          color: #fff;
+        }
       }
     }
   }

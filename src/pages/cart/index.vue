@@ -7,8 +7,8 @@
     </div>
     <div class="cartlist">
       <!--  -->
-      <div class="item" @touchstart="startMove" @touchmove="deleteGoods" v-for="(item,index) in listData" :key="index">
-        <div class="con" :style="{transform:'translateX(' + tranX + 'rpx)'}">
+      <div class="item" @touchstart="startMove" @touchmove="deleteGoods" @touchend="endMove" :data-index="index" v-for="(item,index) in listData" :key="index">
+        <div class="con" :style="item.textStyle">
           <div class="left">
             <div class="icon" @click="changeColor(index)" :class="[ Listids[index] ? 'active' : '',{active:allcheck}]"></div>
             <div class="img">
@@ -26,8 +26,10 @@
           </div>
         </div>
 
-        <div class="delete" :style="{transform:'translateX(' + tranX + 'rpx)'}">
-          删除
+        <div @click="delGoods(item.id)" class="delete" :style="item.textStyle1">
+          <div>
+            删除
+          </div>
         </div>
 
       </div>
@@ -58,48 +60,101 @@ export default {
       this.getListData();
     }
   },
-  created() {
-    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-    // if (login()) {
-    //   this.userInfo = login();
-    //   this.getListData();
-    // }
-  },
+  created() {},
   data() {
     return {
       allcheck: false,
       listData: [],
       Listids: [],
       userInfo: {},
-      startX: 0,
-      startY: 0,
-      moveEndX: 0,
-      moveEndY: 0,
-      tranX: 0
+      tranX: 0,
+      tranX1: 0,
+      startX: "",
+      startY: "",
+      moveX: "",
+      moveY: "",
+      moveEndX: "",
+      moveEndY: "",
+      X: 0,
+      Y: ""
     };
   },
   components: {},
   methods: {
+    initTextStyle() {
+      //滑动之前先初始化数据
+      for (var i = 0; i < this.listData.length; i++) {
+        this.listData[i].textStyle = "";
+        this.listData[i].textStyle1 = "";
+      }
+    },
     startMove(e) {
+      this.initTextStyle();
       this.startX = e.touches[0].pageX;
       this.startY = e.touches[0].pageY;
     },
     deleteGoods(e) {
-      this.moveEndX = e.touches[0].pageX;
-      this.moveEndY = e.touches[0].pageY;
-      let X = this.moveEndX - this.startX;
-      let Y = this.moveEndX - this.startY;
-      if (X >= 100) {
-        X = 0;
+      //滑动之前先初始化样式数据
+      this.initTextStyle();
+      var index = e.currentTarget.dataset.index;
+      console.log(index);
+      if (this.X <= -100) {
+        this.flag = true;
       }
-      if (X <= -100) {
-        X = -100;
+      if (!this.flag) {
+        this.moveX = e.touches[0].pageX;
+        this.moveY = e.touches[0].pageY;
+        this.X = this.moveX - this.startX;
+        this.Y = this.moveX - this.startY;
+        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
+        if (this.X >= 100) {
+          this.X = 0;
+        }
+        this.tranX = this.X;
+        if (this.X <= -100) {
+          this.X = -100;
+        }
+        this.tranX1 = this.X;
+        this.listData[index].textStyle1 = `transform:translateX(${this.tranX1}rpx);`;
+      } else {
+        this.moveX = e.touches[0].pageX;
+        this.moveY = e.touches[0].pageY;
+        this.X = this.moveX - this.startX;
+        this.Y = this.moveX - this.startY;
+
+        this.tranX = this.X - 100;
+        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
+        // transform:'translateX(' + tranX + 'rpx)'
+        console.log("heyushuo");
+
+        console.log(this.listData[index].textStyle);
+
+        if (this.X + -100 > -100) {
+          this.flag = false;
+        }
+        this.tranX1 = -100;
+        this.listData[index].textStyle1 = `transform:translateX(-100rpx);`;
+        console.log(this.listData[index].textStyle1);
+        // this.listData = this.listData;
       }
-      this.tranX = X;
-      if (Math.abs(X) > Math.abs(Y) && X > 20) {
-        console.log("left 2 right");
-      } else if (Math.abs(X) > Math.abs(Y) && X < 20) {
-        console.log("right 2 left");
+      // if (Math.abs(this.X) > Math.abs(this.Y) && this.X > 20) {
+      //   this.scrollflag = false;
+      // } else if (Math.abs(this.X) > Math.abs(this.Y) && this.X < 20) {
+      //   console.log("right 2 left");
+      // }
+    },
+    endMove(e) {
+      var index = e.currentTarget.dataset.index;
+      if (this.X > -50) {
+        this.tranX1 = 0;
+        this.tranX = 0;
+        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
+        this.listData[index].textStyle1 = `transform:translateX(${this.tranX1}rpx);`;
+      } else if (this.X <= -50) {
+        this.tranX1 = -100;
+        this.tranX = -100;
+        this.listData[index].textStyle = `transform:translateX(${this.tranX}rpx);`;
+        this.listData[index].textStyle1 = `transform:translateX(${this.tranX1}rpx);`;
       }
     },
     orderDown() {
@@ -113,13 +168,36 @@ export default {
         });
       }
     },
+    async delGoods(id) {
+      var _this = this;
+      wx.showModal({
+        title: "",
+        content: "是否要删除该收货地址",
+        success: function(res) {
+          if (res.confirm) {
+            const data = get("/address/deleteAction", {
+              id: id
+            }).then(() => {
+              _this.getAddressList();
+            });
+          } else if (res.cancel) {
+            console.log("用户点击取消");
+            //滑动之前先初始化样式数据
+            _this.initTextStyle();
+          }
+        }
+      });
+    },
     async getListData() {
       const data = await get("/cart/cartList", {
         openId: this.userInfo.openId
       });
+      for (var i = 0; i < data.data.length; i++) {
+        data.data[i].textStyle = "";
+        data.data[i].textStyle1 = "";
+      }
       this.listData = data.data;
       console.log(this.listData);
-      console.log(this.Listids);
     },
     allCheck() {
       if (this.allcheck) {
