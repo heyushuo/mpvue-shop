@@ -91,12 +91,12 @@
           {
             title: "我的足迹",
             icon: "icon-zuji",
-            url: "/pages/collectlist/main"
+            url: ""
           },
           {
             title: "我的收藏",
             icon: "icon-shoucang",
-            url: ""
+            url: "/pages/collectlist/main"
           },
           {
             title: "地址管理",
