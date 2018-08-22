@@ -60,10 +60,10 @@ export default {
   },
   created() {
     // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-    if (login()) {
-      this.userInfo = login();
-      this.getListData();
-    }
+    // if (login()) {
+    //   this.userInfo = login();
+    //   this.getListData();
+    // }
   },
   data() {
     return {

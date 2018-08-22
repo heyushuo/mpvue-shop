@@ -1,19 +1,52 @@
 .address {
-  position: absolute;
-  width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   background: #fff;
-  .item {
-    padding: 0 20rpx;
+  padding-bottom: 110rpx;
+  box-sizing: border-box; // overflow-x: hidden;
+  // overflow-y: scroll;
+  // -webkit-overflow-scrolling: touch;
+  .addcont {
+    height: 100%; // padding-bottom: 110rpx;
+    // box-sizing: border-box;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
+    .item {
+      padding: 0 20rpx;
+      .list {
+        position: relative;
+        padding: 30rpx 0;
+        border-bottom: 1px solid #d9d9d9;
+        .delete {
+          position: absolute;
+          width: 100rpx;
+          top: 0;
+          right: -120rpx;
+          text-align: center;
+          height: 100%;
+          line-height: 100%;
+          background: #b4282d;
+          color: #fff;
+          transition: all 200ms ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          div {
+            color: #fff;
+          }
+        }
+      }
+    }
   }
   .addresslist {
-    transition: all 300ms ease;
+    width: 100%;
     position: relative;
+    transition: all 300ms ease;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30rpx 0;
-    border-bottom: 1px solid #d9d9d9;
     div:nth-child(1) {
       width: 100rpx;
       text-align: center;
@@ -48,19 +81,8 @@
       width: 50rpx;
       height: 50rpx;
       margin: 0 20rpx;
-      background: url('http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/del-address-88d6937d73.png') no-repeat;
+      background: url('../../../static/images/edit.png') no-repeat;
       background-size: 100% 100%;
-    }
-    .delete {
-      position: absolute;
-      width: 100rpx;
-      top: 0;
-      right: -120rpx;
-      text-align: center;
-      height: 166rpx;
-      background: #b4282d;
-      color: #fff;
-      transition: all 300ms ease;
     }
   }
   .center {
@@ -81,17 +103,18 @@
     }
   }
   .bottom {
-    position: absolute;
-    bottom: 30rpx;
+    position: fixed;
+    bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 30rpx;
+    padding: 30rpx 30rpx;
     display: flex;
     justify-content: space-between;
+    background: #fff;
     div {
       width: 330rpx;
-      height: 50rpx;
-      line-height: 50rpx;
+      height: 70rpx;
+      line-height: 70rpx;
       text-align: center;
       border: 1px solid #B4282D;
       color: #B4282D;
