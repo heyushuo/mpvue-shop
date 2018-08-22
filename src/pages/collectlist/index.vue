@@ -37,7 +37,12 @@
           openId: this.openId
         })
         this.collectlist = data.collectGoodsList;
-      }
+      },
+      goodsDetail(id) {
+        wx.navigateTo({
+          url: "/pages/goods/main?id=" + id
+        });
+      },
     },
     computed: {}
   };

@@ -28,6 +28,10 @@
       <div>请选择规格数量</div>
       <div></div>
     </div>
+    <div @click="showType" class="section-nav">
+      <div>用户评价</div>
+      <div></div>
+    </div>
 
     <div v-if="attribute.length!=0" class="attribute">
       <div class="head">
@@ -51,7 +55,7 @@
       <div @click="toCart">
         <div class="car">
           <span>
-            {{number}}
+            {{allnumber}}
           </span>
           <img src="../../../static/images/ic_menu_shoping_nor.png" alt="">
         </div>
@@ -59,6 +63,7 @@
       <div @click="bug">立即购买</div>
       <div @click="addCart">加入购物车</div>
     </div>
+
     <!-- 选择规格部分 -->
     <div v-show="showpop" class="pop">
 
@@ -97,27 +102,30 @@
     get,
     post,
     toLogin,
-    login
+    login,
+    getStorageOpenid
   } from "../../utils";
   import wxParse from "mpvue-wxparse";
 
   export default {
-    created() {
+    created() {},
+    mounted() {
       //判断是否登录获取用户信息
       if (login()) {
         this.userInfo = login();
       }
-    },
-    mounted() {
       this.id = this.$root.$mp.query.id;
+      this.openId = getStorageOpenid();
       this.goodsDetail();
       console.log(this.id);
     },
     data() {
       return {
+        allnumber: 0,
+        openId: "",
         collectFlag: false,
-        number: 1,
-        showpop: true,
+        number: 0,
+        showpop: false,
         gallery: [],
         info: {},
         brand: {},
@@ -155,7 +163,18 @@
         }
       },
       async addCart() {
-        if (toLogin()) {
+        // if (toLogin()) {
+        if (this.showpop) {
+          if (this.number == 0) {
+            wx.showToast({
+              title: '请选择商品数量', //提示的内容,
+              duration: 2000, //延迟时间,
+              icon: "none",
+              mask: true, //显示透明蒙层，防止触摸穿透,
+              success: res => {}
+            });
+            return false;
+          }
           const data = await post("/cart/addCart", {
             openId: this.userInfo.openId,
             goodsId: this.goodsId,
@@ -163,14 +182,19 @@
           })
           //添加成功后
           if (data) {
+            this.allnumber = this.allnumber + this.number;
             wx.showToast({
               title: "添加购物车成功",
               icon: "success",
               duration: 1500
             });
           }
-
+        } else {
+          this.showpop = true;
         }
+
+
+        // }
       },
       toCart() {
         wx.navigateTo({
@@ -179,7 +203,8 @@
       },
       async goodsDetail() {
         const data = await get("/goods/detailaction", {
-          id: this.id
+          id: this.id,
+          openId: this.openId
         });
         this.gallery = data.gallery;
         this.info = data.info;
@@ -188,6 +213,9 @@
         this.brand = data.brand;
         this.attribute = data.attribute;
         this.goods_desc = data.info.goods_desc;
+        this.collectFlag = data.collected
+        this.allnumber = data.allnumber;
+
       },
       showType() {
         this.showpop = !this.showpop;
