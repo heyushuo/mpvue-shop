@@ -1,0 +1,120 @@
+.order {
+  .seladdress {
+    width: 100%;
+    min-height: 166rpx;
+    background: url('http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-bg-bd30f2bfeb.png') 0 0 repeat-x #fff;
+    background-size: 62rpx 10rpx;
+    margin-bottom: 20rpx;
+    padding-top: 10rpx;
+    text-align: center;
+    line-height: 166rpx;
+  }
+  .address {
+    background: url('http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-bg-bd30f2bfeb.png') 0 0 repeat-x #fff;
+    padding: 50rpx 0 30rpx 0;
+    margin-bottom: 20rpx;
+    .item {
+      padding: 0 20rpx;
+      .addresslist {
+        width: 100%;
+        position: relative;
+        transition: all 300ms ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        div:nth-child(1) {
+          width: 100rpx;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          align-self: flex-start;
+          .moren {
+            width: 60rpx;
+            height: 30rpx;
+            border: 1rpx solid #b4282d;
+            text-align: center;
+            line-height: 30rpx;
+            color: #b4282d;
+            margin: 10rpx auto 0 auto;
+          }
+        }
+        .info {
+          padding: 0 20rpx;
+          flex: 1; // p:nth-child(1) {}
+          p:nth-child(2) {
+            margin-top: 5rpx;
+            color: #666;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
+        div:nth-child(3) {
+          width: 50rpx;
+          height: 50rpx;
+          margin: 0 20rpx;
+          background: url('http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-right-596d39df1e.png') no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    }
+  }
+  .orderbox {
+    padding: 0 30rpx;
+    background: #ffffff;
+    .item {
+      padding: 30rpx 0;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #d9d9d9;
+    }
+    .item:last-child {
+      border: none;
+    }
+  }
+  .cartlist {
+    background: #fff;
+    margin-bottom: 110rpx;
+    margin-top: 20rpx;
+    .item {
+      padding: 20rpx 0;
+      border-bottom: 1rpx solid #f4f4f4; // height: 166rpx;
+      position: relative;
+      .con {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 300ms ease;
+        .left {
+          display: flex;
+          align-items: center;
+          width: 80%;
+          .img {
+            height: 125rpx;
+            width: 125rpx;
+            display: block;
+            background: #f4f4f4;
+            margin-left: 20rpx;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .info {
+            width: 50%;
+            padding: 20rpx;
+            p {
+              line-height: 40rpx;
+            }
+          }
+        }
+        .right {
+          padding-right: 50rpx;
+        }
+      }
+    }
+  }
+}

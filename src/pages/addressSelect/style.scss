@@ -1,0 +1,127 @@
+.address {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding-bottom: 110rpx;
+  box-sizing: border-box; // overflow-x: hidden;
+  // overflow-y: scroll;
+  // -webkit-overflow-scrolling: touch;
+  .addcont {
+    height: 100%; // padding-bottom: 110rpx;
+    // box-sizing: border-box;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
+    .item {
+      padding: 0 20rpx;
+      .list {
+        position: relative;
+        padding: 30rpx 0;
+        border-bottom: 1px solid #d9d9d9;
+        .delete {
+          position: absolute;
+          width: 100rpx;
+          top: 0;
+          right: -120rpx;
+          text-align: center;
+          height: 100%;
+          line-height: 100%;
+          background: #b4282d;
+          color: #fff;
+          transition: all 200ms ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          div {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .addresslist {
+    width: 100%;
+    position: relative;
+    transition: all 300ms ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div:nth-child(1) {
+      width: 100rpx;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      align-self: flex-start;
+      .moren {
+        width: 60rpx;
+        height: 30rpx;
+        border: 1rpx solid #b4282d;
+        text-align: center;
+        line-height: 30rpx;
+        color: #b4282d;
+        margin: 10rpx auto 0 auto;
+      }
+    }
+    .info {
+      padding: 0 20rpx;
+      flex: 1; // p:nth-child(1) {}
+      p:nth-child(2) {
+        margin-top: 5rpx;
+        color: #666;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
+    div:nth-child(3) {
+      width: 50rpx;
+      height: 50rpx;
+      margin: 0 20rpx;
+      background: url('../../../static/images/edit.png') no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  .center {
+    width: 248rpx;
+    height: 248rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -80%, 0);
+    background: url('http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png') no-repeat;
+    background-size: 100% 100%;
+    p {
+      position: absolute;
+      bottom: -20rpx;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30rpx 30rpx;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    div {
+      width: 330rpx;
+      height: 70rpx;
+      line-height: 70rpx;
+      text-align: center;
+      border: 1px solid #B4282D;
+      color: #B4282D;
+    }
+    div:nth-child(2) {
+      border: 1px solid green;
+      color: green;
+    }
+  }
+}
