@@ -10,7 +10,8 @@
 <script>
 var qcloud = require("wafer2-client-sdk/index.js");
 export default {
-  created() {
+  created() {},
+  mounted() {
     qcloud.setLoginUrl("http://192.168.2.1:5757/heyushuo/login");
   },
   data() {
@@ -19,6 +20,11 @@ export default {
   components: {},
   methods: {
     doLogin() {
+      wx.showLoading({
+        title: "登录中...", //提示的内容,
+        mask: true, //显示透明蒙层，防止触摸穿透,
+        success: res => {}
+      });
       const session = qcloud.Session.get();
       if (session) {
         // 第二次登录
@@ -38,6 +44,7 @@ export default {
         // 首次登录
         qcloud.login({
           success: res => {
+            wx.hideLoading();
             wx.setStorageSync("userInfo", res);
             wx.navigateBack({});
           },

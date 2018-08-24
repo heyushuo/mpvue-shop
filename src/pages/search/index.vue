@@ -61,7 +61,8 @@
 <script>
 import { post, get } from "../../utils";
 export default {
-  created() {
+  created() {},
+  mounted() {
     this.openid = wx.getStorageSync("openid") || "";
     this.getHotData();
   },

@@ -9,55 +9,18 @@
       </div>
     </div>
     <div class="iconlist">
-      <div v-for="(item, index) in listData" :key="index">
-        <navigator :url="item.url">
+      <div @click="goTo(item.url)" v-for="(item, index) in listData" :key="index">
+        <navigator hover-class="none" :url="item.url">
           <span class="iconfont" :class="item.icon"></span>
           <span>{{item.title}}</span>
         </navigator>
       </div>
-      <!-- <div>
-        <span class="iconfont icon-unie64a"></span>
-        <span>我的订单</span>
-      </div>
-      <div>
-        <span class="iconfont icon-youhuiquan"></span>
-        <span>优惠券</span>
-      </div> -->
-      <!-- <div>
-        <span class="iconfont icon-lipin"></span>
-        <span>礼品卡</span>
-      </div> -->
-      <!-- <div>
-        <span class="iconfont icon-zuji"></span>
-        <span>我的足迹</span>
-      </div>
-      <div>
-        <span class="iconfont icon-shoucang"></span>
-        <span>我的收藏</span>
-      </div>
-
-      <div>
-        <span class="iconfont icon-dizhiguanli"></span>
-        <span>地址管理</span>
-      </div>
-      <div>
-        <span class="iconfont icon-unie64a"></span>
-        <span>联系客服</span>
-      </div>
-      <div>
-        <span class="iconfont icon-bangzhuzhongxin"></span>
-        <span>帮助中心</span>
-      </div>
-      <div>
-        <span class="iconfont icon-yijianfankui"></span>
-        <span>意见反馈</span>
-      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import { get, login } from "../../utils";
+import { get, toLogin, login } from "../../utils";
 export default {
   onShow() {
     // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
@@ -122,10 +85,17 @@ export default {
   },
   components: {},
   methods: {
+    goTo(url) {
+      if (toLogin()) {
+        wx.navigateTo({ url: url });
+      }
+    },
     toLogin() {
-      wx.navigateTo({
-        url: "/pages/login/main"
-      });
+      if (!this.userInfo.avatarUrl) {
+        wx.navigateTo({
+          url: "/pages/login/main"
+        });
+      }
     }
   },
   computed: {}

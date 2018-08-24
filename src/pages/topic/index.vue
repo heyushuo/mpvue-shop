@@ -31,7 +31,8 @@ export default {
     }
     this.getListData();
   },
-  created() {
+  created() {},
+  mounted() {
     this.getListData(true);
   },
   data() {

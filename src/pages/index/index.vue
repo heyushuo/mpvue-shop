@@ -118,6 +118,9 @@
 <script>
 import { get } from "../../utils";
 export default {
+  mounted() {
+    this.getData();
+  },
   data() {
     return {
       banner: [],
@@ -175,10 +178,7 @@ export default {
       wx.navigateTo({ url: "/pages/branddetail/main?id=" + id });
     }
   },
-  created() {
-    // 调用应用实例的方法获取全局数据
-    this.getData();
-  }
+  created() {}
 };
 </script>
 

@@ -1,14 +1,14 @@
 <template>
-    <div class="brand">
-        <div @click="branddetail(item.id)" v-for="(item, index) in listData" :key="index" class="list">
-            <img :src="item.app_list_pic_url" alt="">
-            <div class="info">
-                <span>{{item.name}}</span>
-                <span>|</span>
-                <span>{{item.floor_price}}元起</span>
-            </div>
-        </div>
+  <div class="brand">
+    <div @click="branddetail(item.id)" v-for="(item, index) in listData" :key="index" class="list">
+      <img :src="item.app_list_pic_url" alt="">
+      <div class="info">
+        <span>{{item.name}}</span>
+        <span>|</span>
+        <span>{{item.floor_price}}元起</span>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -27,7 +27,8 @@ export default {
     }
     this.getData();
   },
-  created() {
+  created() {},
+  mounted() {
     this.getData(true);
   },
   data() {
