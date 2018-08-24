@@ -11,7 +11,7 @@
 var qcloud = require("wafer2-client-sdk/index.js");
 export default {
   created() {
-    qcloud.setLoginUrl("http://localhost:5757/heyushuo/login");
+    qcloud.setLoginUrl("http://192.168.2.1:5757/heyushuo/login");
   },
   data() {
     return {};
