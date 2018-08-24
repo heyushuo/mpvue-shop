@@ -59,8 +59,7 @@
 <script>
 import { get, login } from "../../utils";
 export default {
-  created() {},
-  mounted() {
+  onShow() {
     // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
     if (login()) {
       this.userInfo = login();
@@ -68,6 +67,8 @@ export default {
       this.avator = this.userInfo.avatarUrl;
     }
   },
+  created() {},
+  mounted() {},
   data() {
     return {
       avator: "http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png",

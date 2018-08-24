@@ -21,7 +21,7 @@ export function formatTime(date) {
 
 //-------------------------------------------------------------------------请求的封装
 
-const host = 'http://192.168.2.1:9996/heyushuo'
+const host = 'http://192.168.2.1:5757/heyushuo'
 //请求封装
 function request(url, method, data, header = {}) {
   wx.showLoading({

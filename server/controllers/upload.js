@@ -1,9 +1,11 @@
-const { uploader } = require('../qcloud')
+const {
+  uploader
+} = require('../mysql')
 
 module.exports = async ctx => {
-    // 获取上传之后的结果
-    // 具体可以查看：
-    const data = await uploader(ctx.req)
+  // 获取上传之后的结果
+  // 具体可以查看：
+  const data = await uploader(ctx.req)
 
-    ctx.state.data = data
+  ctx.state.data = data
 }

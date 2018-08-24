@@ -13,7 +13,7 @@ const {
     authorizationMiddleware,
     validationMiddleware
   }
-} = require('../qcloud')
+} = require('../mysql')
 
 // --- 登录与授权 Demo --- //
 // 登录接口
