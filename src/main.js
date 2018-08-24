@@ -12,7 +12,7 @@ export default {
   // 这个字段走 app.json
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
-    "pages": ["pages/order/main", "^pages/cart/main", "pages/collectlist/main", "pages/address/main", "pages/index/main", "pages/search/main", "pages/my/main", "pages/login/main", "pages/category/main", "pages/categorylist/main", "pages/topic/main", "pages/goods/main", "pages/logs/main", "pages/branddetail/main", "pages/brandlist/main", "pages/comment/main", "pages/commentsend/main", "pages/hotgoods/main", "pages/newgoods/main", "pages/practice/main", "pages/topicdetail/main"],
+    "pages": ["pages/order/main", "pages/cart/main", "pages/collectlist/main", "pages/addressselect/main", "pages/addaddress/main", "pages/address/main", "^pages/index/main", "pages/search/main", "pages/my/main", "pages/login/main", "pages/category/main", "pages/categorylist/main", "pages/topic/main", "pages/goods/main", "pages/logs/main", "pages/branddetail/main", "pages/brandlist/main", "pages/comment/main", "pages/commentsend/main", "pages/hotgoods/main", "pages/newgoods/main", "pages/practice/main", "pages/topicdetail/main"],
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",

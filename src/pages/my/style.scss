@@ -46,5 +46,11 @@
     div:nth-child(3n+3) {
       border-right: none;
     }
+    div:nth-last-child(1) {
+      border-bottom: none;
+    }
+    div:nth-last-child(2) {
+      border-bottom: none;
+    }
   }
 }

@@ -1,161 +1,172 @@
 .search {
-  height: 100%;
-  position: relative;
-  .head {
-    height: 91rpx;
-    display: flex;
-    padding: 0 32rpx;
-    align-items: center;
-    justify-content: space-between;
-    background: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, .15);
-    div:nth-child(1) {
-      height: 59rpx;
-      display: flex;
-      align-items: center;
-      background: #f4f4f4;
-      img {
-        display: inline-block;
-        width: 31rpx;
-        height: 31rpx;
-        padding: 0 20rpx;
-      }
-      input {
-        display: inline-block;
-        width: 480rpx;
-        height: 59rpx;
-        margin-left: 10rpx;
-      }
-      .del {
-        width: 53rpx;
-        height: 53rpx;
-        padding: 0;
-      }
-    }
-    div:nth-child(2) {
-      flex: 1;
-      text-align: center;
-    }
-  }
-  .searchtips {
-    position: absolute;
-    width: 100%;
-    top: 91rpx;
-    left: 0;
-    bottom: 0;
-    box-sizing: border-box;
-    padding: 0 32rpx;
-    z-index: 9;
-    background: #fff;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    div {
-      padding: 20rpx 0;
-    }
-    .nogoods {
-      text-align: center;
-      margin-top: 300rpx;
-    }
-  }
-  .goodsList {
-    position: absolute;
-    width: 100%;
-    top: 91rpx;
-    left: 0;
-    bottom: 0;
-    box-sizing: border-box; // padding: 0 32rpx;
-    z-index: 9;
-    background: #fff;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    .sortnav {
-      display: flex;
-      background: #fff;
-      width: 100%;
-      height: 78rpx;
-      line-height: 78rpx;
-      div {
-        width: 250rpx;
-        height: 100%;
-        text-align: center;
-      }
-      .active {
-        color: #b4282d;
-      }
-      .price {
-        background: url(//yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/no-3127092a69.png) 165rpx center no-repeat;
-        background-size: 15rpx 21rpx;
-      }
-      .active.desc {
-        background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/down-95e035f3e5.png) 165rpx center no-repeat;
-        background-size: 15rpx 21rpx;
-      }
-      .active.asc {
-        background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/up-636b92c0a5.png) 165rpx center no-repeat;
-        background-size: 15rpx 21rpx;
-      }
-    }
-    .sortlist {
-      margin-top: 20rpx;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      .item {
-        width: 372.5rpx;
-        margin-bottom: 5rpx;
-        text-align: center;
+    height: 100%;
+    position: relative;
+    .head {
+        height: 91rpx;
+        display: flex;
+        padding: 0 32rpx;
+        align-items: center;
+        justify-content: space-between;
         background: #fff;
-        padding: 15rpx 0;
-        img {
-          display: block;
-          width: 302rpx;
-          height: 302rpx;
-          margin: 0 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        div:nth-child(1) {
+            height: 59rpx;
+            display: flex;
+            align-items: center;
+            background: #f4f4f4;
+            img {
+                display: inline-block;
+                width: 31rpx;
+                height: 31rpx;
+                padding: 0 20rpx;
+            }
+            input {
+                display: inline-block;
+                width: 480rpx;
+                height: 59rpx;
+                margin-left: 10rpx;
+            }
+            .del {
+                width: 53rpx;
+                height: 53rpx;
+                padding: 0;
+            }
         }
-        .name {
-          margin: 15rpx 0 22rpx 0;
-          text-align: center;
-          padding: 0 20rpx;
-          font-size: 24rpx;
+        div:nth-child(2) {
+            flex: 1;
+            text-align: center;
         }
-        .price {
-          text-align: center;
-          font-size: 30rpx;
-          color: #b4282d;
+    }
+    .searchtips {
+        position: absolute;
+        width: 100%;
+        top: 91rpx;
+        left: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        padding: 0 32rpx;
+        z-index: 9;
+        background: #fff;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        div {
+            padding: 20rpx 0;
         }
-      }
+        .nogoods {
+            text-align: center;
+            margin-top: 300rpx;
+        }
     }
-  }
-  .history {
-    background: #fff;
-    padding: 32rpx;
-    .t {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30rpx;
-      div:nth-child(2) {
-        width: 55rpx;
-        height: 55rpx;
-        background: url('http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/del1-93f0a4add4.png') no-repeat;
-        background-size: 100% 100%;
-      }
+    .goodsList {
+        position: absolute;
+        width: 100%;
+        top: 91rpx;
+        left: 0;
+        bottom: 0;
+        background: #fff;
+        box-sizing: border-box; // padding: 0 32rpx;
+        z-index: 9;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        .sortnav {
+            display: flex;
+            width: 100%;
+            height: 78rpx;
+            line-height: 78rpx;
+            background: #fff;
+            border-bottom: 1px solid #d9d9d9;
+            div {
+                width: 250rpx;
+                height: 100%;
+                text-align: center;
+            }
+            .active {
+                color: #b4282d;
+            }
+            .price {
+                background: url(//yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/no-3127092a69.png) 165rpx center no-repeat;
+                background-size: 15rpx 21rpx;
+            }
+            .active.desc {
+                background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/down-95e035f3e5.png) 165rpx center no-repeat;
+                background-size: 15rpx 21rpx;
+            }
+            .active.asc {
+                background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/up-636b92c0a5.png) 165rpx center no-repeat;
+                background-size: 15rpx 21rpx;
+            }
+        }
+        .sortlist {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .item {
+                box-sizing: border-box;
+                width: 50%;
+                text-align: center;
+                background: #fff;
+                padding: 15rpx 0;
+                border-bottom: 1px solid #d9d9d9;
+                border-right: 1px solid #d9d9d9;
+                img {
+                    display: block;
+                    width: 302rpx;
+                    height: 302rpx;
+                    margin: 0 auto;
+                }
+                .name {
+                    margin: 15rpx 0 22rpx 0;
+                    text-align: center;
+                    padding: 0 20rpx;
+                    font-size: 24rpx;
+                }
+                .price {
+                    text-align: center;
+                    font-size: 30rpx;
+                    color: #b4282d;
+                }
+            }
+            .item.active:nth-last-child(1) {
+                border-bottom: none;
+            }
+            .item.active:nth-last-child(2) {
+                border-bottom: none;
+            }
+            .item.none:last-child {
+                border-bottom: none;
+            }
+        }
     }
-    .cont {
-      display: flex;
-      flex-wrap: wrap;
-      div {
-        padding: 10rpx 10rpx;
-        border: 1px solid #999;
-        margin: 0 30rpx 20rpx 0;
-      }
-      .active {
-        border: 1px solid #b4282d;
-        color: #b4282d;
-      }
+    .history {
+        background: #fff;
+        padding: 32rpx;
+        .t {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30rpx;
+            div:nth-child(2) {
+                width: 55rpx;
+                height: 55rpx;
+                background: url("http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/del1-93f0a4add4.png") no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+        .cont {
+            display: flex;
+            flex-wrap: wrap;
+            div {
+                padding: 10rpx 10rpx;
+                border: 1px solid #999;
+                margin: 0 30rpx 20rpx 0;
+            }
+            .active {
+                border: 1px solid #b4282d;
+                color: #b4282d;
+            }
+        }
     }
-  }
-  .hotsearch {
-    margin-top: 20rpx;
-  }
+    .hotsearch {
+        margin-top: 20rpx;
+    }
 }

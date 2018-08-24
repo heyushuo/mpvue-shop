@@ -4,7 +4,7 @@
     <scroll-view scroll-y="true" class="addcont" style="height: 100%;">
       <!-- <div class="addcont"> -->
       <div v-if="listData.length!=0" class="item">
-        <div @click="selAddress(item.id)" class="list" v-for="(item, index) in listData" :key="index">
+        <div class="list" v-for="(item, index) in listData" :key="index">
           <div class="addresslist" :style="item.textStyle">
             <div>
               <span>{{item.name}}</span>
@@ -12,7 +12,7 @@
                 默认
               </div>
             </div>
-            <div class="info">
+            <div @click="selAddress(item.id)" class="info">
               <p>{{item.mobile}}</p>
               <p>{{item.address+item.address_detail}}</p>
             </div>
@@ -59,6 +59,7 @@ export default {
       });
     },
     toDetail(id) {
+      console.log(id);
       wx.navigateTo({
         url: "/pages/addaddress/main?id=" + id
       });

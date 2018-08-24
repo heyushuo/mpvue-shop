@@ -48,7 +48,7 @@
         <div @click="changeTab(2)" :class="[2==nowIndex ?'active':'']">分类</div>
       </div>
       <div class="sortlist">
-        <div @click="goodsDetail(item.id)" v-for="(item, index) in listData" :key="index" class="item">
+        <div @click="goodsDetail(item.id)" v-for="(item, index) in listData" :key="index" :class="[(listData.length)%2==0?'active':'none']" class="item">
           <img :src="item.list_pic_url" alt="">
           <p class="name">{{item.name}}</p>
           <p class="price">￥{{item.retail_price}}</p>
@@ -81,6 +81,11 @@ export default {
   },
   components: {},
   methods: {
+    goodsDetail(id) {
+      wx.navigateTo({
+        url: "/pages/goods/main?id=" + id
+      });
+    },
     cancel() {
       wx.navigateBack({
         delta: 1 //返回的页面数，如果 delta 大于现有页面数，则返回到首页,

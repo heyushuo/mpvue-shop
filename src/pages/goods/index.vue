@@ -28,10 +28,10 @@
       <div>请选择规格数量</div>
       <div></div>
     </div>
-    <div @click="showType" class="section-nav">
+    <!-- <div @click="showType" class="section-nav">
       <div>用户评价</div>
       <div></div>
-    </div>
+    </div> -->
 
     <div v-if="attribute.length!=0" class="attribute">
       <div class="head">
@@ -95,7 +95,7 @@
           <span>
             {{allnumber}}
           </span>
-          <img src="../../../static/images/ic_menu_shoping_nor.png" alt="">
+          <img src="/static/images/ic_menu_shoping_nor.png" alt="">
         </div>
       </div>
       <div @click="bug">立即购买</div>
@@ -166,7 +166,8 @@ export default {
       goods_desc: "",
       id: "",
       userInfo: "",
-      goodsId: ""
+      goodsId: "",
+      allPrise: ""
     };
   },
   components: {
@@ -186,8 +187,33 @@ export default {
         return false;
       }
     },
-    bug() {
+    async bug() {
       if (toLogin()) {
+        if (this.showpop) {
+          if (this.number == 0) {
+            wx.showToast({
+              title: "请选择商品数量", //提示的内容,
+              duration: 2000, //延迟时间,
+              icon: "none",
+              mask: true, //显示透明蒙层，防止触摸穿透,
+              success: res => {}
+            });
+            return false;
+          }
+          console.log(this.goodsId);
+          console.log(this.openId);
+
+          const data = await post("/order/submitAction", {
+            goodsId: this.goodsId,
+            openId: this.openId,
+            allPrise: this.allPrise
+          });
+          if (data) {
+            wx.navigateTo({ url: "/pages/order/main" });
+          }
+        } else {
+          this.showpop = true;
+        }
       }
     },
     async collect() {
@@ -233,9 +259,12 @@ export default {
       // }
     },
     toCart() {
-      wx.navigateTo({
+      wx.switchTab({
         url: "/pages/cart/main"
       });
+      // wx.navigateTo({
+      //   url: "/pages/cart/main"
+      // });
     },
     async goodsDetail() {
       const data = await get("/goods/detailaction", {
@@ -244,7 +273,7 @@ export default {
       });
       this.gallery = data.gallery;
       this.info = data.info;
-
+      this.allPrise = data.info.retail_price;
       this.goodsId = data.info.id;
       this.brand = data.brand;
       this.attribute = data.attribute;

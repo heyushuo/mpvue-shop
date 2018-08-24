@@ -1,4 +1,5 @@
 .order {
+  overflow-x: hidden;
   .seladdress {
     width: 100%;
     min-height: 166rpx;
@@ -115,6 +116,29 @@
           padding-right: 50rpx;
         }
       }
+    }
+  }
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    height: 100rpx;
+    width: 100%;
+    display: flex;
+    background: #fff;
+    font-size: 32repx;
+    div:nth-child(1) {
+      flex: 1;
+      line-height: 100rpx;
+      padding-left: 20rpx
+    }
+    div:nth-child(2) {
+      width: 200rpx;
+      height: 100rpx;
+      text-align: center;
+      line-height: 100rpx;
+      font-size: 29rpx;
+      background: #b4282d;
+      color: #fff;
     }
   }
 }

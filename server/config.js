@@ -44,7 +44,7 @@ const CONF = {
     host: 'localhost',
     port: 3306,
     user: 'root',
-    db: 'nodemysql',
+    db: 'heyushuonew',
     pass: '123456',
     char: 'utf8mb4'
   },

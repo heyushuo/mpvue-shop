@@ -96,7 +96,7 @@
       display: flex;
       background: #f7f7f7;
       padding: 20rpx 0;
-      margin: 20rpx 0;
+      margin: 20rpx;
       div:nth-child(1) {
         width: 134rpx;
         font-size: 25rpx;
@@ -111,6 +111,7 @@
     }
   }
   .common-problem {
+    margin-bottom: 110rpx;
     .h {
       padding: 35rpx 0;
       background: #fff;
