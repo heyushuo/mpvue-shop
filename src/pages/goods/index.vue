@@ -226,37 +226,36 @@ export default {
       }
     },
     async addCart() {
-      // if (toLogin()) {
-      if (this.showpop) {
-        if (this.number == 0) {
-          wx.showToast({
-            title: "请选择商品数量", //提示的内容,
-            duration: 2000, //延迟时间,
-            icon: "none",
-            mask: true, //显示透明蒙层，防止触摸穿透,
-            success: res => {}
+      if (toLogin()) {
+        if (this.showpop) {
+          if (this.number == 0) {
+            wx.showToast({
+              title: "请选择商品数量", //提示的内容,
+              duration: 2000, //延迟时间,
+              icon: "none",
+              mask: true, //显示透明蒙层，防止触摸穿透,
+              success: res => {}
+            });
+            return false;
+          }
+          const data = await post("/cart/addCart", {
+            openId: this.userInfo.openId,
+            goodsId: this.goodsId,
+            number: this.number
           });
-          return false;
+          //添加成功后
+          if (data) {
+            this.allnumber = this.allnumber + this.number;
+            wx.showToast({
+              title: "添加购物车成功",
+              icon: "success",
+              duration: 1500
+            });
+          }
+        } else {
+          this.showpop = true;
         }
-        const data = await post("/cart/addCart", {
-          openId: this.userInfo.openId,
-          goodsId: this.goodsId,
-          number: this.number
-        });
-        //添加成功后
-        if (data) {
-          this.allnumber = this.allnumber + this.number;
-          wx.showToast({
-            title: "添加购物车成功",
-            icon: "success",
-            duration: 1500
-          });
-        }
-      } else {
-        this.showpop = true;
       }
-
-      // }
     },
     toCart() {
       wx.switchTab({
