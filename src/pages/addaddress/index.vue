@@ -44,7 +44,7 @@
     getStorageOpenid
   } from "../../utils";
   export default {
-    onShow() {
+    onLoad() {
       this.initData()
     },
     created() {},

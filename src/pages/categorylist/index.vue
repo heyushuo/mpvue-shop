@@ -27,6 +27,9 @@
     get
   } from "../../utils";
   export default {
+    onLoad() {
+      this.initData()
+    },
     created() {},
     mounted() {
       //获取页面传的参数
@@ -45,6 +48,14 @@
     },
     components: {},
     methods: {
+      initData() {
+        this.categoryId = ""
+        this.nowIndex = 0
+        this.goodsList = []
+        this.navData = []
+        this.currentNav = {}
+        this.scrollLeft = 0
+      },
       async changeTab(index, id) {
         this.nowIndex = index;
         const listdata = await get("/goods/goodsList", {
