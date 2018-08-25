@@ -50,6 +50,6 @@ export default {
   margin: 100px auto;
   padding: 5px 10px;
   color: blue;
-  border: 1px solid blue;
+  border: 1rpx solid blue;
 }
 </style>

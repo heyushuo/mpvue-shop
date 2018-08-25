@@ -18,7 +18,7 @@
       .list {
         position: relative;
         padding: 30rpx 0;
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: 1rpx solid #d9d9d9;
         .delete {
           position: absolute;
           width: 100rpx;
@@ -116,11 +116,11 @@
       height: 70rpx;
       line-height: 70rpx;
       text-align: center;
-      border: 1px solid #B4282D;
+      border: 1rpx solid #B4282D;
       color: #B4282D;
     }
     div:nth-child(2) {
-      border: 1px solid green;
+      border: 1rpx solid green;
       color: green;
     }
   }

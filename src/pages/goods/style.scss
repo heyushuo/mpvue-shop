@@ -35,7 +35,7 @@
     height: 306rpx;
     background: #fff;
     margin: 0 auto;
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 1rpx solid #f4f4f4;
     .c {
       height: 100%;
       p {
@@ -64,7 +64,7 @@
           color: #b1a279;
           font-size: 20rpx;
           padding: 5rpx 30rpx;
-          border: 1px solid #b1a279;
+          border: 1rpx solid #b1a279;
         }
       }
     }
@@ -121,7 +121,7 @@
       justify-content: center;
       .line {
         display: inline-block;
-        height: 1px;
+        height: 1rpx;
         width: 100rpx;
         background: #ccc;
       }
@@ -281,7 +281,7 @@
         height: 71rpx;
         line-height: 71rpx;
         display: flex;
-        border: 1px solid #ccc;
+        border: 1rpx solid #ccc;
         margin-top: 20rpx;
         div {
           width: 90rpx;
@@ -291,8 +291,8 @@
           flex: 1;
           height: 100%;
           text-align: center;
-          border-left: 1px solid #ccc;
-          border-right: 1px solid #ccc;
+          border-left: 1rpx solid #ccc;
+          border-right: 1rpx solid #ccc;
         }
       }
     }
@@ -313,7 +313,7 @@
     div:nth-child(1) {
       height: 100rpx;
       width: 162rpx;
-      border: 1px solid #f4f4f4;
+      border: 1rpx solid #f4f4f4;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -335,7 +335,7 @@
     div:nth-child(2) {
       height: 100rpx;
       width: 162rpx;
-      border: 1px solid #f4f4f4;
+      border: 1rpx solid #f4f4f4;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -373,11 +373,11 @@
       flex: 1;
       text-align: center;
       color: #333;
-      border-top: 1px solid #f4f4f4;
-      border-bottom: 1px solid #f4f4f4;
+      border-top: 1rpx solid #f4f4f4;
+      border-bottom: 1rpx solid #f4f4f4;
     }
     div:nth-child(4) {
-      border: 1px solid #b4282d;
+      border: 1rpx solid #b4282d;
       background: #b4282d;
       float: left;
       height: 100rpx;
