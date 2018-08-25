@@ -147,8 +147,7 @@
 
   export default {
     onLoad() {
-      this.gallery = [];
-      this.info = {};
+      this.initData();
       //判断是否登录获取用户信息
       if (login()) {
         this.userInfo = login();
@@ -184,6 +183,24 @@
       wxParse
     },
     methods: {
+      initData() {
+        this.gallery = [];
+        this.info = {};
+        this.allnumber = 0
+        this.collectFlag = false
+        this.number = 0
+        this.showpop = false
+        this.gallery = []
+        this.info = {}
+        this.brand = {}
+        this.attribute = []
+        this.issueList = []
+        this.productList = []
+        this.goods_desc = ""
+        this.id = ""
+        this.goodsId = ""
+        this.allPrise = ""
+      },
       togoodsDetail(id) {
         wx.navigateTo({
           url: "/pages/goods/main?id=" + id

@@ -10,10 +10,8 @@
     </div>
     <div class="iconlist">
       <div @click="goTo(item.url)" v-for="(item, index) in listData" :key="index">
-        <navigator hover-class="none" :url="item.url">
-          <span class="iconfont" :class="item.icon"></span>
-          <span>{{item.title}}</span>
-        </navigator>
+        <span class="iconfont" :class="item.icon"></span>
+        <span>{{item.title}}</span>
       </div>
     </div>
   </div>

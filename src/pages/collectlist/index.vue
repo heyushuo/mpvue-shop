@@ -19,10 +19,13 @@
     getStorageOpenid
   } from '../../utils';
   export default {
-    created() {},
-    mounted() {
+    onShow() {
       this.openId = getStorageOpenid();
       this.getlist();
+    },
+    created() {},
+    mounted() {
+
     },
     data() {
       return {
