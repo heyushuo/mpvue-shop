@@ -21,7 +21,8 @@
 
 <script>
   import {
-    post
+    post,
+    login,
   } from '../../utils'
   export default {
     mounted() {
@@ -50,7 +51,7 @@
           content: this.content,
           phone: this.phone
         })
-        if (data) {
+        if (data.data) {
           wx.showToast({
             title: '提交成功', //提示的内容,
             icon: 'none', //图标,
