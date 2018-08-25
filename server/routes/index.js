@@ -130,4 +130,10 @@ router.get('/address/detailAction', controllers.address.index.detailAction)
 //4.删除收货地址
 router.get('/address/deleteAction', controllers.address.index.deleteAction)
 
+
+/**
+ *  意见反馈
+ */
+router.post('/feedback/submitAction', controllers.feedback.index.submitAction)
+
 module.exports = router
