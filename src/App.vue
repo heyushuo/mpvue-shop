@@ -46,6 +46,14 @@
     color: #333;
   }
 
+  .wxParse .p {
+    margin: 0 !important;
+  }
+
+  .wxParse .img {
+    display: block !important;
+  }
+
   /* this rule will be remove */
 
   /* * {
