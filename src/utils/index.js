@@ -21,7 +21,7 @@ export function formatTime(date) {
 
 //-------------------------------------------------------------------------请求的封装
 
-const host = 'http://192.168.1.104:5757/heyushuo';
+const host = 'https://wayyt9lm.qcloud.la/heyushuo';
 export {
   host
 }
