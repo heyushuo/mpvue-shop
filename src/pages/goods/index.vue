@@ -103,7 +103,7 @@
     </div>
 
     <!-- 选择规格部分 -->
-    <div v-show="showpop" class="pop">
+    <div v-show="showpop" @click="showType" class="pop">
 
     </div>
     <div class="attr-pop" :class="[showpop ? 'fadeup' : 'fadedown']">
