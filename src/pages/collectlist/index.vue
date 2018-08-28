@@ -21,6 +21,7 @@
   export default {
     onShow() {
       this.openId = getStorageOpenid();
+      console.log(this.openId)
       this.getlist();
     },
     created() {},

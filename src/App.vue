@@ -1,7 +1,7 @@
 <script>
-  import {
-    getOpenid
-  } from './utils'
+  // import {
+  //   getOpenid
+  // } from './utils'
   export default {
     created() {
 
@@ -13,9 +13,9 @@
       console.log("app created and cache logs by setStorageSync");
       //获取openid
 
-      if (!wx.getStorageSync('openid')) {
-        getOpenid();
-      }
+      // if (!wx.getStorageSync('openid')) {
+      //   getOpenid();
+      // }
 
     }
   };
