@@ -39,7 +39,7 @@
 ![](https://user-gold-cdn.xitu.io/2018/8/25/165719e2d9b28ee1?w=327&h=573&f=gif&s=611343)
 
 # 小程序后端送门 [点击进入小程序服务端地址](https://github.com/heyushuo/mpvue-shop)
-# 项目总结和遇到的一些问题 # 点击进入博客查看详情
+# 项目总结和遇到的一些问题 # [点击进入博客查看详情](https://juejin.im/post/5b6323baf265da0f5511533a)
 # 最后 #
 - 喜欢的记得点个start,鼓励一下谢谢哈!!
 - 微信号 hys838723
