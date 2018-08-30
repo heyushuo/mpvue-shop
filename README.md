@@ -5,6 +5,7 @@
 # 大家也可以自己默认账户信息 #
 
     大家也可以在App.vue设置自己的默认账户信息(这样就不会和大家冲突了)
+	openId修改为一个唯一的值就行
 
 	var userInfo = {"openId":"oQmbb4sNZdxaUQZ0sfYgvtOP2S7c","nickName":"何玉硕","gender":1,"language":"zh_CN","city":"Changping","province":"Beijing","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIbWFEIJj8IpGeHM7dGic1aTFZALjWcMm9ltWfFiaQfVRYticWBfgGfzXWMt2EkJWiaicPtftHAlWxUibxQ/132","watermark":{"timestamp":1535513485,"appid":"wx601ce71bde7b9add"}};
       var openId = userInfo.openId;
