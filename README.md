@@ -1,6 +1,17 @@
 # mpvue仿网易严选
 **2018年8月30日 :** 好多人反映登录无法登录,因为这个需要自己配置后台才可以,为了可以让大家体验登录后的一些操作,在这里我**添加了默认用户,大家可以体验其他功能!**
 这里可能会遇到问题:**大家都是使用的这一个账号,添加购物车,收藏还有一些收货地址之类的可能会显示很多人添加的,我会定期删除线上默认用户的这些信息,** **抓紧clone最新的代码体验**
+
+# 大家也可以自己默认账户信息 #
+
+    大家也可以在App.vue设置自己的默认账户信息(这样就不会和大家冲突了)
+
+	var userInfo = {"openId":"oQmbb4sNZdxaUQZ0sfYgvtOP2S7c","nickName":"何玉硕","gender":1,"language":"zh_CN","city":"Changping","province":"Beijing","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIbWFEIJj8IpGeHM7dGic1aTFZALjWcMm9ltWfFiaQfVRYticWBfgGfzXWMt2EkJWiaicPtftHAlWxUibxQ/132","watermark":{"timestamp":1535513485,"appid":"wx601ce71bde7b9add"}};
+      var openId = userInfo.openId;
+      wx.setStorageSync("userInfo", userInfo);
+      wx.setStorageSync("openId", openId);
+ 
+
 # 前言 #
 一直打算自己写接口,写一个上线的小程序,数据方面总是无从下手，无意中发现一个网友爬取的网易严选商城的一些数据大概一共有20张左右的表,算是相当详细了(对其中部分表的字段和部分数据进行了修改,)平时写项目大部分用的vue,所以直接选择了mpvue开发,后端一开始打算用php但是学了半个月感觉需要学的东西太多,短时间里写不出这个线上小程序,最后决定用node来开发提供接口。
 ## 此项目仅供学习参考 ##
