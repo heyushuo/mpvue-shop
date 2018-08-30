@@ -9,7 +9,10 @@
       const logs = wx.getStorageSync("logs") || [];
       logs.unshift(Date.now());
       wx.setStorageSync("logs", logs);
-
+      var userInfo = {"openId":"oQmbb4sNZdxaUQZ0sfYgvtOP2S7c","nickName":"何玉硕","gender":1,"language":"zh_CN","city":"Changping","province":"Beijing","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIbWFEIJj8IpGeHM7dGic1aTFZALjWcMm9ltWfFiaQfVRYticWBfgGfzXWMt2EkJWiaicPtftHAlWxUibxQ/132","watermark":{"timestamp":1535513485,"appid":"wx601ce71bde7b9add"}};
+      var openId = userInfo.openId;
+      wx.setStorageSync("userInfo", userInfo);
+      wx.setStorageSync("openId", openId);
       console.log("app created and cache logs by setStorageSync");
       //获取openid
 
