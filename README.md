@@ -1,6 +1,6 @@
 # mpvue 仿网易严选
 
-**2018 年 9 月 5 日 :** 新增商品转发功能(分享功能)
+**2018 年 9 月 5 日 :** 在商品详情页面新增商品转发功能(分享功能)
 
 ![Image text](https://github.com/heyushuo/mpvue-shop/blob/master/images/goods.png)
 
