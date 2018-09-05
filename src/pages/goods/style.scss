@@ -1,17 +1,36 @@
 .goods {
   overflow: hidden;
+
   .swiper {
     width: 750rpx;
     height: 750rpx;
+    position: relative;
+
     .swiper-container {
       width: 750rpx;
       height: 750rpx;
+
       image {
         width: 750rpx;
         height: 750rpx;
       }
     }
+
+    .share {
+      position: absolute;
+      border-radius: 40rpx 0 0 40rpx;
+      width: 150rpx;
+      height: 65rpx;
+      line-height: 65rpx;
+      text-align: center;
+      right: 0;
+      top: 50rpx;
+      background: #e0a354;
+      color: #fff;
+      font-size: 24rpx;
+    }
   }
+
   .swiper-b {
     width: 710rpx;
     height: 73rpx;
@@ -20,8 +39,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     div {
-      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png) 0 center no-repeat;
+      background: url('http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png') 0 center no-repeat;
       background-size: 10rpx;
       padding-left: 15rpx;
       display: flex;
@@ -30,35 +50,43 @@
       color: #666;
     }
   }
+
   .goods-info {
     width: 750rpx;
     height: 306rpx;
     background: #fff;
     margin: 0 auto;
     border-bottom: 1rpx solid #f4f4f4;
+
     .c {
       height: 100%;
+
       p {
         display: block;
         text-align: center;
       }
+
       p:nth-child(1) {
         font-size: 41rpx;
         padding: 20rpx;
       }
+
       p:nth-child(2) {
         margin-bottom: 25rpx;
         font-size: 24rpx;
         color: #999;
       }
+
       p:nth-child(3) {
         margin-top: 10rpx;
         font-size: 35rpx;
         color: #b4282d;
       }
+
       .brand {
         margin-top: 25rpx;
         text-align: center;
+
         p {
           display: inline-block;
           color: #b1a279;
@@ -69,6 +97,7 @@
       }
     }
   }
+
   .section-nav {
     height: 108rpx;
     background: #fff;
@@ -77,6 +106,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     div:nth-child(2) {
       width: 52rpx;
       height: 52rpx;
@@ -84,24 +114,29 @@
       background-size: 100% 100%;
     }
   }
+
   .attribute {
     padding: 20rpx 30rpx;
     background: #fff;
     margin-bottom: 20rpx;
+
     .head {
       font-size: 38rpx;
       padding: 20rpx 0;
     }
+
     .item {
       display: flex;
       background: #f7f7f7;
       padding: 20rpx 0;
       margin: 20rpx;
+
       div:nth-child(1) {
         width: 134rpx;
         font-size: 25rpx;
         color: #999;
       }
+
       div:nth-child(2) {
         flex: 1;
         overflow: hidden;
@@ -110,8 +145,10 @@
       }
     }
   }
+
   .common-problem {
     margin-bottom: 110rpx;
+
     .h {
       padding: 35rpx 0;
       background: #fff;
@@ -119,24 +156,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .line {
         display: inline-block;
         height: 1rpx;
         width: 100rpx;
         background: #ccc;
       }
+
       .title {
         padding: 0 25rpx;
         background: #fff;
       }
     }
+
     .b {
       padding: 0rpx 30rpx;
       background: #fff;
+
       .item {
         padding-bottom: 25rpx;
+
         .question-box {
           display: flex;
+
           .spot {
             height: 8rpx;
             width: 8rpx;
@@ -144,6 +187,7 @@
             border-radius: 50%;
             margin-top: 11rpx;
           }
+
           .question {
             line-height: 30rpx;
             padding-left: 8rpx;
@@ -153,6 +197,7 @@
             color: #303030;
           }
         }
+
         .answer {
           line-height: 40rpx;
           padding-left: 16rpx;
@@ -161,37 +206,44 @@
         }
       }
     }
+
     .sublist {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       width: 730rpx;
       margin: 0 auto;
+
       div {
         width: 360rpx;
         background: #fff;
         margin-bottom: 10rpx;
         padding-bottom: 10rpx;
+
         img {
           display: block;
           width: 302rpx;
           height: 302rpx;
           margin: 0 auto;
         }
+
         p {
           margin-bottom: 5rpx;
           text-indent: 1em;
         }
+
         p:nth-child(2) {
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           width: 98%;
         }
+
         p:nth-child(3) {
           color: #9c3232;
         }
       }
+
       .last {
         display: block;
         width: 302rpx;
@@ -202,6 +254,7 @@
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
+
         p {
           height: 33rpx;
           width: 100%;
@@ -210,6 +263,7 @@
           font-size: 33rpx;
           text-align: center;
         }
+
         .icon {
           display: inline-block;
           width: 70rpx;
@@ -219,11 +273,13 @@
           margin-top: 60rpx;
         }
       }
+
       div:nth-child(2n) {
         margin-left: 10rpx;
       }
     }
   }
+
   .pop {
     position: fixed;
     top: 0;
@@ -232,6 +288,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
   }
+
   .attr-pop {
     position: fixed;
     width: 100%;
@@ -241,10 +298,12 @@
     box-sizing: border-box;
     padding: 30rpx;
     background: #fff;
+
     .top {
       display: flex;
       margin-bottom: 35rpx;
       position: relative;
+
       .close {
         position: absolute;
         right: 0;
@@ -252,29 +311,35 @@
         font-size: 30rpx;
         color: #999;
       }
+
       .left {
         height: 177rpx;
         width: 177rpx;
         margin-right: 30rpx;
+
         img {
           float: left;
           height: 177rpx;
           width: 177rpx;
         }
       }
+
       .right {
         flex: 1;
         display: flex;
         align-items: flex-end;
+
         p {
           width: 100%;
           line-height: 45rpx;
         }
+
         p:nth-child(1) {
           color: #b4282d;
         }
       }
     }
+
     .b {
       .count {
         width: 322rpx;
@@ -283,10 +348,12 @@
         display: flex;
         border: 1rpx solid #ccc;
         margin-top: 20rpx;
+
         div {
           width: 90rpx;
           text-align: center;
         }
+
         input {
           flex: 1;
           height: 100%;
@@ -297,9 +364,11 @@
       }
     }
   }
+
   .fadeup {
     transform: translateY(-500rpx); // transition: all 0.4s ease;
   }
+
   .bottom-fixed {
     position: fixed;
     bottom: 0;
@@ -310,6 +379,7 @@
     display: flex;
     background: #fff;
     z-index: 10;
+
     div:nth-child(1) {
       height: 100rpx;
       width: 162rpx;
@@ -317,6 +387,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .collect {
         display: block;
         height: 44rpx;
@@ -324,6 +395,7 @@
         background: url('../../../static/images/icon_collect.png') no-repeat;
         background-size: 100% 100%;
       }
+
       .collect.active {
         display: block;
         height: 44rpx;
@@ -332,6 +404,7 @@
         background-size: 100% 100%;
       }
     }
+
     div:nth-child(2) {
       height: 100rpx;
       width: 162rpx;
@@ -339,10 +412,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .car {
         position: relative;
         height: 60rpx;
         width: 60rpx;
+
         span {
           height: 28rpx;
           width: 28rpx;
@@ -357,6 +432,7 @@
           line-height: 28rpx;
           border-radius: 50%;
         }
+
         img {
           display: block;
           height: 44rpx;
@@ -367,6 +443,7 @@
         }
       }
     }
+
     div:nth-child(3) {
       height: 100rpx;
       line-height: 96rpx;
@@ -376,6 +453,7 @@
       border-top: 1rpx solid #f4f4f4;
       border-bottom: 1rpx solid #f4f4f4;
     }
+
     div:nth-child(4) {
       border: 1rpx solid #b4282d;
       background: #b4282d;

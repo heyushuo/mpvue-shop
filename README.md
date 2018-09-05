@@ -1,4 +1,9 @@
 # mpvue仿网易严选
+**2018年8月30日 :** 新增商品转发功能(分享功能)
+
+![Image text](https://github.com/heyushuo/mpvue-shop/blob/master/images/goods.png)
+![Image text](https://github.com/heyushuo/mpvue-shop/blob/master/images/goods1.png)
+
 **2018年8月30日 :** 好多人反映登录无法登录,因为这个需要自己配置后台才可以,为了可以让大家体验登录后的一些操作,在这里我**添加了默认用户,大家可以体验其他功能!**
 这里可能会遇到问题:**大家都是使用的这一个账号,添加购物车,收藏还有一些收货地址之类的可能会显示很多人添加的,我会定期删除线上默认用户的这些信息,** **抓紧clone最新的代码体验**
 

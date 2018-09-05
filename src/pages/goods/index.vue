@@ -8,6 +8,7 @@
           </swiper-item>
         </block>
       </swiper>
+      <button class="share" hover-class="none" open-type="share" value="">分享商品</button>
     </div>
     <div class="swiper-b">
       <div class="item">30天无忧退货</div>
@@ -136,193 +137,195 @@
 </template>
 
 <script>
-  import {
-    get,
-    post,
-    toLogin,
-    login,
-    getStorageOpenid
-  } from "../../utils";
-  import wxParse from "mpvue-wxparse";
+import { get, post, toLogin, login, getStorageOpenid } from "../../utils";
+import wxParse from "mpvue-wxparse";
 
-  export default {
-    onLoad() {
-      this.initData();
-      //判断是否登录获取用户信息
-      if (login()) {
-        this.userInfo = login();
+export default {
+  onLoad() {
+    this.initData();
+    //判断是否登录获取用户信息
+    if (login()) {
+      this.userInfo = login();
+    }
+    this.id = this.$root.$mp.query.id;
+    this.openId = getStorageOpenid();
+    this.goodsDetail();
+  },
+  //商品转发
+  onShareAppMessage() {
+    console.log(this.info.name);
+    console.log(this.info.id);
+    console.log(this.gallery[0].img_url);
+
+    return {
+      title: this.info.name,
+      path: "/pages/goods/main?id=" + this.info.id,
+      imageUrl: this.gallery[0].img_url //拿第一张商品的图片
+    };
+  },
+  mounted() {},
+  data() {
+    return {
+      allnumber: 0,
+      openId: "",
+      collectFlag: false,
+      number: 0,
+      showpop: false,
+      gallery: [],
+      info: {},
+      brand: {},
+      attribute: [],
+      issueList: [],
+      productList: [],
+      goods_desc: "",
+      id: "",
+      userInfo: "",
+      goodsId: "",
+      allPrise: ""
+    };
+  },
+  components: {
+    wxParse
+  },
+  methods: {
+    initData() {
+      this.gallery = [];
+      this.info = {};
+      this.allnumber = 0;
+      this.collectFlag = false;
+      this.number = 0;
+      this.showpop = false;
+      this.gallery = [];
+      this.info = {};
+      this.brand = {};
+      this.attribute = [];
+      this.issueList = [];
+      this.productList = [];
+      this.goods_desc = "";
+      this.id = "";
+      this.goodsId = "";
+      this.allPrise = "";
+    },
+    togoodsDetail(id) {
+      wx.navigateTo({
+        url: "/pages/goods/main?id=" + id
+      });
+    },
+    add() {
+      this.number = this.number + 1;
+    },
+    reduce() {
+      if (this.number > 1) {
+        this.number = this.number - 1;
+      } else {
+        return false;
       }
-      this.id = this.$root.$mp.query.id;
-      this.openId = getStorageOpenid();
-      this.goodsDetail();
     },
-    mounted() {
-
-    },
-    data() {
-      return {
-        allnumber: 0,
-        openId: "",
-        collectFlag: false,
-        number: 0,
-        showpop: false,
-        gallery: [],
-        info: {},
-        brand: {},
-        attribute: [],
-        issueList: [],
-        productList: [],
-        goods_desc: "",
-        id: "",
-        userInfo: "",
-        goodsId: "",
-        allPrise: ""
-      };
-    },
-    components: {
-      wxParse
-    },
-    methods: {
-      initData() {
-        this.gallery = [];
-        this.info = {};
-        this.allnumber = 0
-        this.collectFlag = false
-        this.number = 0
-        this.showpop = false
-        this.gallery = []
-        this.info = {}
-        this.brand = {}
-        this.attribute = []
-        this.issueList = []
-        this.productList = []
-        this.goods_desc = ""
-        this.id = ""
-        this.goodsId = ""
-        this.allPrise = ""
-      },
-      togoodsDetail(id) {
-        wx.navigateTo({
-          url: "/pages/goods/main?id=" + id
-        });
-      },
-      add() {
-        this.number = this.number + 1;
-      },
-      reduce() {
-        if (this.number > 1) {
-          this.number = this.number - 1;
-        } else {
-          return false;
-        }
-      },
-      async bug() {
-        if (toLogin()) {
-          if (this.showpop) {
-            if (this.number == 0) {
-              wx.showToast({
-                title: "请选择商品数量", //提示的内容,
-                duration: 2000, //延迟时间,
-                icon: "none",
-                mask: true, //显示透明蒙层，防止触摸穿透,
-                success: res => {}
-              });
-              return false;
-            }
-            console.log(this.goodsId);
-            console.log(this.openId);
-
-            const data = await post("/order/submitAction", {
-              goodsId: this.goodsId,
-              openId: this.openId,
-              allPrise: this.allPrise
+    async bug() {
+      if (toLogin()) {
+        if (this.showpop) {
+          if (this.number == 0) {
+            wx.showToast({
+              title: "请选择商品数量", //提示的内容,
+              duration: 2000, //延迟时间,
+              icon: "none",
+              mask: true, //显示透明蒙层，防止触摸穿透,
+              success: res => {}
             });
-            if (data) {
-              wx.navigateTo({
-                url: "/pages/order/main"
-              });
-            }
-          } else {
-            this.showpop = true;
+            return false;
           }
-        }
-      },
-      async collect() {
-        if (toLogin()) {
-          this.collectFlag = !this.collectFlag;
-          const data = await post("/collect/addcollect", {
-            openId: this.userInfo.openId,
-            goodsId: this.goodsId
+          console.log(this.goodsId);
+          console.log(this.openId);
+
+          const data = await post("/order/submitAction", {
+            goodsId: this.goodsId,
+            openId: this.openId,
+            allPrise: this.allPrise
           });
-        }
-      },
-      async addCart() {
-        if (toLogin()) {
-          if (this.showpop) {
-            if (this.number == 0) {
-              wx.showToast({
-                title: "请选择商品数量", //提示的内容,
-                duration: 2000, //延迟时间,
-                icon: "none",
-                mask: true, //显示透明蒙层，防止触摸穿透,
-                success: res => {}
-              });
-              return false;
-            }
-            const data = await post("/cart/addCart", {
-              openId: this.userInfo.openId,
-              goodsId: this.goodsId,
-              number: this.number
+          if (data) {
+            wx.navigateTo({
+              url: "/pages/order/main"
             });
-            //添加成功后
-            if (data) {
-              this.allnumber = this.allnumber + this.number;
-              wx.showToast({
-                title: "添加购物车成功",
-                icon: "success",
-                duration: 1500
-              });
-            }
-          } else {
-            this.showpop = true;
           }
+        } else {
+          this.showpop = true;
         }
-      },
-      toCart() {
-        wx.switchTab({
-          url: "/pages/cart/main"
-        });
-        // wx.navigateTo({
-        //   url: "/pages/cart/main"
-        // });
-      },
-      async goodsDetail() {
-        const data = await get("/goods/detailaction", {
-          id: this.id,
-          openId: this.openId
-        });
-        this.gallery = data.gallery;
-        this.info = data.info;
-        this.allPrise = data.info.retail_price;
-        this.goodsId = data.info.id;
-        this.brand = data.brand;
-        this.attribute = data.attribute;
-        this.goods_desc = data.info.goods_desc;
-        this.issueList = data.issue;
-        this.collectFlag = data.collected;
-        this.allnumber = data.allnumber;
-        this.productList = data.productList;
-      },
-      showType() {
-        this.showpop = !this.showpop;
       }
     },
-    computed: {}
-  };
-
+    async collect() {
+      if (toLogin()) {
+        this.collectFlag = !this.collectFlag;
+        const data = await post("/collect/addcollect", {
+          openId: this.userInfo.openId,
+          goodsId: this.goodsId
+        });
+      }
+    },
+    async addCart() {
+      if (toLogin()) {
+        if (this.showpop) {
+          if (this.number == 0) {
+            wx.showToast({
+              title: "请选择商品数量", //提示的内容,
+              duration: 2000, //延迟时间,
+              icon: "none",
+              mask: true, //显示透明蒙层，防止触摸穿透,
+              success: res => {}
+            });
+            return false;
+          }
+          const data = await post("/cart/addCart", {
+            openId: this.userInfo.openId,
+            goodsId: this.goodsId,
+            number: this.number
+          });
+          //添加成功后
+          if (data) {
+            this.allnumber = this.allnumber + this.number;
+            wx.showToast({
+              title: "添加购物车成功",
+              icon: "success",
+              duration: 1500
+            });
+          }
+        } else {
+          this.showpop = true;
+        }
+      }
+    },
+    toCart() {
+      wx.switchTab({
+        url: "/pages/cart/main"
+      });
+      // wx.navigateTo({
+      //   url: "/pages/cart/main"
+      // });
+    },
+    async goodsDetail() {
+      const data = await get("/goods/detailaction", {
+        id: this.id,
+        openId: this.openId
+      });
+      this.gallery = data.gallery;
+      this.info = data.info;
+      this.allPrise = data.info.retail_price;
+      this.goodsId = data.info.id;
+      this.brand = data.brand;
+      this.attribute = data.attribute;
+      this.goods_desc = data.info.goods_desc;
+      this.issueList = data.issue;
+      this.collectFlag = data.collected;
+      this.allnumber = data.allnumber;
+      this.productList = data.productList;
+    },
+    showType() {
+      this.showpop = !this.showpop;
+    }
+  },
+  computed: {}
+};
 </script>
 <style lang='scss' scoped>
-  @import url("~mpvue-wxparse/src/wxParse.css");
-  @import "./style.scss";
-
+@import url("~mpvue-wxparse/src/wxParse.css");
+@import "./style.scss";
 </style>
