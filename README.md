@@ -2,6 +2,7 @@
 **2018 年 9 月 6 日 :**  在首页顶部新增搜索以及引入高德地图api
 
 **1.用户同意获取授权和用户不同意获取授权两种情况**
+
 ![](https://user-gold-cdn.xitu.io/2018/9/6/165af1268bc30e93?imageslim)
 ![](https://user-gold-cdn.xitu.io/2018/9/6/165af12af41b68d6?imageslim)
 
