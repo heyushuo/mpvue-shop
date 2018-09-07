@@ -130,7 +130,12 @@ export default {
   onLoad() {
     this.getCityName();
   },
-  onShow() {},
+  onShow() {
+    if (wx.getStorageSync("cityName")) {
+      this.cityName = wx.getStorageSync("cityName");
+      wx.removeStorageSync("cityName");
+    }
+  },
   computed: {
     ...mapState(["cityName"])
   },
@@ -139,7 +144,6 @@ export default {
   },
   data() {
     return {
-      // cityName: "定位中..",
       banner: [],
       channel: [],
       brandList: [],
@@ -153,17 +157,36 @@ export default {
   methods: {
     ...mapMutations(["update"]),
     toMappage() {
-      wx.navigateTo({ url: "/pages/mappage/main" });
+      var _this = this;
+      // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+      wx.getSetting({
+        success(res) {
+          //如果没有同意授权,打开设置
+          if (!res.authSetting["scope.userLocation"]) {
+            wx.openSetting({
+              success: res => {
+                _this.getCityName();
+              }
+            });
+          } else {
+            wx.navigateTo({
+              url: "/pages/mappage/main"
+            });
+          }
+        }
+      });
     },
     getCityName() {
       var _this = this;
-      var myAmapFun = new amapFile.AMapWX({ key: "e545e7f79a643f23aef187add14e4548" });
+      var myAmapFun = new amapFile.AMapWX({
+        key: "e545e7f79a643f23aef187add14e4548"
+      });
       myAmapFun.getRegeo({
         success: function(data) {
           //成功回调
           console.log(data);
           // data[0].regeocodeData.formatted_address
-          // _this.cityName = data[0].regeocodeData.formatted_address;
+          _this.cityName = data[0].regeocodeData.formatted_address;
           _this.update({ cityName: data[0].regeocodeData.formatted_address });
         },
         fail: function(info) {
@@ -171,13 +194,15 @@ export default {
           console.log(info);
           //如果用户拒绝授权
           // 默认为北京
-          // _this.cityName = "北京市";
+          _this.cityName = "北京市";
           _this.update({ cityName: "北京市" });
         }
       });
     },
     toSearch() {
-      wx.navigateTo({ url: "/pages/search/main" });
+      wx.navigateTo({
+        url: "/pages/search/main"
+      });
     },
     async getData() {
       const data = await get("/index/index");
@@ -189,123 +214,49 @@ export default {
       this.topicList = data.topicList;
       this.newCategoryList = data.newCategoryList;
     },
-    mounted() {
-      this.getData();
+    goodsDetail(id) {
+      wx.navigateTo({
+        url: "/pages/goods/main?id=" + id
+      });
     },
-    data() {
-      return {
-        cityName: "定位中..",
-        banner: [],
-        channel: [],
-        brandList: [],
-        newGoods: [],
-        hotGoods: [],
-        topicList: [],
-        newCategoryList: []
-      };
+    categoryList(id) {
+      wx.navigateTo({
+        url: "/pages/categorylist/main?id=" + id
+      });
     },
-    components: {},
-    methods: {
-      toMappage() {
-        var _this = this;
-        // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-        wx.getSetting({
-          success(res) {
-            //如果没有同意授权,打开设置
-            if (!res.authSetting["scope.userLocation"]) {
-              wx.openSetting({
-                success: res => {
-                  _this.getCityName();
-                }
-              });
-            } else {
-              wx.navigateTo({
-                url: "/pages/mappage/main"
-              });
-            }
-          }
-        });
-      },
-      getCityName() {
-        var _this = this;
-        var myAmapFun = new amapFile.AMapWX({
-          key: "e545e7f79a643f23aef187add14e4548"
-        });
-        myAmapFun.getRegeo({
-          success: function(data) {
-            //成功回调
-            console.log(data);
-            // data[0].regeocodeData.formatted_address
-            _this.cityName = data[0].regeocodeData.formatted_address;
-          },
-          fail: function(info) {
-            //失败回调
-            console.log(info);
-            //如果用户拒绝授权
-            // 默认为北京
-            _this.cityName = "北京市";
-          }
-        });
-      },
-      toSearch() {
+    goodsList(info) {
+      if (info == "hot") {
         wx.navigateTo({
-          url: "/pages/search/main"
+          url: "/pages/newgoods/main?isHot=" + 1
         });
-      },
-      async getData() {
-        const data = await get("/index/index");
-        this.banner = data.banner;
-        this.channel = data.channel;
-        this.brandList = data.brandList;
-        this.newGoods = data.newGoods;
-        this.hotGoods = data.hotGoods;
-        this.topicList = data.topicList;
-        this.newCategoryList = data.newCategoryList;
-      },
-      goodsDetail(id) {
+      } else {
         wx.navigateTo({
-          url: "/pages/goods/main?id=" + id
-        });
-      },
-      categoryList(id) {
-        wx.navigateTo({
-          url: "/pages/categorylist/main?id=" + id
-        });
-      },
-      goodsList(info) {
-        if (info == "hot") {
-          wx.navigateTo({
-            url: "/pages/newgoods/main?isHot=" + 1
-          });
-        } else {
-          wx.navigateTo({
-            url: "/pages/newgoods/main?isNew=" + 1
-          });
-        }
-      },
-      topicdetail(id) {
-        wx.navigateTo({
-          url: "/pages/topicdetail/main?id=" + id
-        });
-      },
-      totopic() {
-        wx.navigateTo({
-          url: "/pages/topic/main"
-        });
-      },
-      tobrandList() {
-        wx.navigateTo({
-          url: "/pages/brandlist/main"
-        });
-      },
-      branddetail(id) {
-        wx.navigateTo({
-          url: "/pages/branddetail/main?id=" + id
+          url: "/pages/newgoods/main?isNew=" + 1
         });
       }
     },
-    created() {}
-  }
+    topicdetail(id) {
+      wx.navigateTo({
+        url: "/pages/topicdetail/main?id=" + id
+      });
+    },
+    totopic() {
+      wx.navigateTo({
+        url: "/pages/topic/main"
+      });
+    },
+    tobrandList() {
+      wx.navigateTo({
+        url: "/pages/brandlist/main"
+      });
+    },
+    branddetail(id) {
+      wx.navigateTo({
+        url: "/pages/branddetail/main?id=" + id
+      });
+    }
+  },
+  created() {}
 };
 </script>
 
