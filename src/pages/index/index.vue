@@ -125,21 +125,21 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
+import { mapState, mapMutations } from "vuex";
 export default {
   onLoad() {
     this.getCityName();
   },
-  onShow() {
-    if (wx.getStorageSync("cityName")) {
-      this.cityName = wx.getStorageSync("cityName");
-    }
+  onShow() {},
+  computed: {
+    ...mapState(["cityName"])
   },
   mounted() {
     this.getData();
   },
   data() {
     return {
-      cityName: "定位中..",
+      // cityName: "定位中..",
       banner: [],
       channel: [],
       brandList: [],
@@ -151,6 +151,7 @@ export default {
   },
   components: {},
   methods: {
+    ...mapMutations(["update"]),
     toMappage() {
       wx.navigateTo({ url: "/pages/mappage/main" });
     },
@@ -162,14 +163,16 @@ export default {
           //成功回调
           console.log(data);
           // data[0].regeocodeData.formatted_address
-          _this.cityName = data[0].regeocodeData.formatted_address;
+          // _this.cityName = data[0].regeocodeData.formatted_address;
+          _this.update({ cityName: data[0].regeocodeData.formatted_address });
         },
         fail: function(info) {
           //失败回调
           console.log(info);
           //如果用户拒绝授权
           // 默认为北京
-          _this.cityName = "北京市";
+          // _this.cityName = "北京市";
+          _this.update({ cityName: "北京市" });
         }
       });
     },
