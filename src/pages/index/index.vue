@@ -131,10 +131,6 @@ export default {
     this.getCityName();
   },
   onShow() {
-    if (wx.getStorageSync("cityName")) {
-      this.cityName = wx.getStorageSync("cityName");
-      wx.removeStorageSync("cityName");
-    }
   },
   computed: {
     ...mapState(["cityName"])
