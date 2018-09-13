@@ -182,7 +182,7 @@ export default {
           //成功回调
           console.log(data);
           // data[0].regeocodeData.formatted_address
-          _this.cityName = data[0].regeocodeData.formatted_address;
+          // _this.cityName = data[0].regeocodeData.formatted_address;
           _this.update({ cityName: data[0].regeocodeData.formatted_address });
         },
         fail: function(info) {
