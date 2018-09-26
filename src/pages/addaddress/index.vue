@@ -10,7 +10,6 @@
       <picker mode="region" @change="bindRegionChange" :value="region" :custom-item="customItem">
         <input type="text" placeholder="身份、城市、区县" v-model="address">
       </picker>
-      <!-- <input type="text" placeholder="身份、城市、区县" v-model="address"> -->
     </div>
     <!-- <view class="section">
       <view class="section__title">省市区选择器</view>
