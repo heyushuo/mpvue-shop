@@ -141,13 +141,15 @@ import { get, post, toLogin, login, getStorageOpenid } from "../../utils";
 import wxParse from "mpvue-wxparse";
 
 export default {
-  onLoad() {
-    this.initData();
+  onShow() {
+  },
+  mounted() {
     //判断是否登录获取用户信息
     if (login()) {
       this.userInfo = login();
     }
     this.id = this.$root.$mp.query.id;
+
     this.openId = getStorageOpenid();
     this.goodsDetail();
   },
@@ -163,7 +165,7 @@ export default {
       imageUrl: this.gallery[0].img_url //拿第一张商品的图片
     };
   },
-  mounted() {},
+  mounted() { },
   data() {
     return {
       allnumber: 0,
@@ -188,28 +190,8 @@ export default {
     wxParse
   },
   methods: {
-    initData() {
-      this.gallery = [];
-      this.info = {};
-      this.allnumber = 0;
-      this.collectFlag = false;
-      this.number = 0;
-      this.showpop = false;
-      this.gallery = [];
-      this.info = {};
-      this.brand = {};
-      this.attribute = [];
-      this.issueList = [];
-      this.productList = [];
-      this.goods_desc = "";
-      this.id = "";
-      this.goodsId = "";
-      this.allPrise = "";
-    },
     togoodsDetail(id) {
-      wx.navigateTo({
-        url: "/pages/goods/main?id=" + id
-      });
+      wx.redirectTo({ url: "/pages/goods/main?id=" + id });
     },
     add() {
       this.number = this.number + 1;
@@ -230,7 +212,7 @@ export default {
               duration: 2000, //延迟时间,
               icon: "none",
               mask: true, //显示透明蒙层，防止触摸穿透,
-              success: res => {}
+              success: res => { }
             });
             return false;
           }
@@ -270,7 +252,7 @@ export default {
               duration: 2000, //延迟时间,
               icon: "none",
               mask: true, //显示透明蒙层，防止触摸穿透,
-              success: res => {}
+              success: res => { }
             });
             return false;
           }

@@ -22,12 +22,10 @@
 import amapFile from "../../utils/amap-wx";
 import { mapMutations } from "vuex";
 export default {
-  onLoad() {
-    this.initData();
+  created() { },
+  mounted() {
     this.getMapaddress();
   },
-  created() {},
-  mounted() {},
   data() {
     return {
       tips: [],
@@ -40,7 +38,7 @@ export default {
   components: {},
   methods: {
     ...mapMutations(["update"]),
-    bindInput: function(e) {
+    bindInput: function (e) {
       var _this = this;
       var keywords = this.keywords;
       var myAmapFun = new amapFile.AMapWX({
@@ -49,7 +47,7 @@ export default {
       myAmapFun.getInputtips({
         keywords: keywords,
         location: "",
-        success: function(data) {
+        success: function (data) {
           console.log(data);
 
           if (data && data.tips) {
@@ -58,7 +56,7 @@ export default {
         }
       });
     },
-    bindSearch: function(cityName) {
+    bindSearch: function (cityName) {
       console.log(cityName);
       // wx.setStorageSync("cityName", cityName);
       this.update({ cityName: cityName });
@@ -75,7 +73,7 @@ export default {
         iconPath: "/static/images/marker.png",
         iconWidth: 22,
         iconHeight: 32,
-        success: function(data) {
+        success: function (data) {
           console.log(data);
           var marker = [
             {
@@ -90,41 +88,12 @@ export default {
           _this.markers = marker;
           _this.latitude = data[0].latitude;
           _this.longitude = data[0].longitude;
-          // var marker = [
-          //   {
-          //     id: data[0].id,
-          //     latitude: data[0].latitude,
-          //     longitude: data[0].longitude,
-          //     iconPath: data[0].iconPath,
-          //     width: data[0].width,
-          //     height: data[0].height
-          //   }
-          // ];
-          // that.setData({
-          //   markers: marker
-          // });
-          // that.setData({
-          //   latitude: data[0].latitude
-          // });
-          // that.setData({
-          //   longitude: data[0].longitude
-          // });
-          // that.setData({
-          //   textData: {
-          //     name: data[0].name,
-          //     desc: data[0].desc
-          //   }
-          // });
         },
-        fail: function(info) {
+        fail: function (info) {
           // wx.showModal({title:info.errMsg})
         }
       });
     },
-    initData() {
-      this.tips = [];
-      this.keywords = "";
-    }
   },
   computed: {}
 };

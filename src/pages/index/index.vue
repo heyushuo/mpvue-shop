@@ -127,15 +127,13 @@ import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
 import { mapState, mapMutations } from "vuex";
 export default {
-  onLoad() {
-    this.getCityName();
-  },
   onShow() {
   },
   computed: {
     ...mapState(["cityName"])
   },
   mounted() {
+    this.getCityName();
     this.getData();
   },
   data() {
@@ -178,14 +176,14 @@ export default {
         key: "e545e7f79a643f23aef187add14e4548"
       });
       myAmapFun.getRegeo({
-        success: function(data) {
+        success: function (data) {
           //成功回调
           console.log(data);
           // data[0].regeocodeData.formatted_address
           // _this.cityName = data[0].regeocodeData.formatted_address;
           _this.update({ cityName: data[0].regeocodeData.formatted_address });
         },
-        fail: function(info) {
+        fail: function (info) {
           //失败回调
           console.log(info);
           //如果用户拒绝授权
@@ -252,7 +250,7 @@ export default {
       });
     }
   },
-  created() {}
+  created() { }
 };
 </script>
 

@@ -21,10 +21,7 @@
 <script>
 import { get } from "../../utils";
 export default {
-  onLoad() {
-    this.initData();
-  },
-  created() {},
+  created() { },
   mounted() {
     if (this.$root.$mp.query.isHot) {
       this.isHot = this.$root.$mp.query.isHot;
@@ -46,14 +43,6 @@ export default {
   },
   components: {},
   methods: {
-    initData() {
-      this.order = "";
-      this.isHot = "";
-      this.isNew = "";
-      this.nowIndex = 0;
-      this.navData = ["综合", "价格", "分类"];
-      this.listData = [];
-    },
     async getlistData() {
       const data = await get("/goods/goodsList", { isHot: this.isHot, isNew: this.isNew, order: this.order });
       this.listData = data.data;
