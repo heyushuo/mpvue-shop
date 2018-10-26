@@ -148,6 +148,8 @@ export default {
     if (login()) {
       this.userInfo = login();
     }
+    console.log(this.$root.$mp.query.id);
+
     this.id = this.$root.$mp.query.id;
 
     this.openId = getStorageOpenid();
@@ -165,7 +167,6 @@ export default {
       imageUrl: this.gallery[0].img_url //拿第一张商品的图片
     };
   },
-  mounted() { },
   data() {
     return {
       allnumber: 0,
