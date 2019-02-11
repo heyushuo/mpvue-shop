@@ -7,11 +7,11 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"miniprogramRoot": "./dist/",
-	"qcloudRoot": "./server/",
+	"miniprogramRoot": "dist/",
+	"qcloudRoot": "server/",
 	"compileType": "miniprogram",
 	"appid": "wx601ce71bde7b9add",
-	"projectname": "mpvue-shop",
+	"projectname": "mpvue-shop-ceshibanben",
 	"libVersion": "2.2.4",
 	"condition": {
 		"search": {
