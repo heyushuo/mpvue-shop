@@ -1,5 +1,13 @@
 # mpvue 仿网易严选
 
+**2019年8月26日：**由于域名和证书到期了，以前下载项目的接口请求不到了，需要把请求的域名换成ip加端口
+```javascript
+//在utils文件下的index.js里，把host换成ip加端口
+
+const host = "https://www.heyuhsuo.xyz";
+// 换成下边的
+const host = "http://118.25.222.68:5757/heyushuo";
+```
 **2019 年 2 月 15 日**:最近有人下载项目安装依赖后无法运行代码,因为 mpvue 跟新导致的,需要进行版本锁定,如下修改 package.json 文件.删除**node_modules**,重新安装依赖
 
 ```javascript
