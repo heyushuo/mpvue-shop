@@ -13,6 +13,8 @@
 	"appid": "wx601ce71bde7b9add",
 	"projectname": "mpvue-shop-ceshibanben",
 	"libVersion": "2.2.4",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
