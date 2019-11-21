@@ -1,4 +1,15 @@
 # mpvue 仿网易严选
+
+## 如何开启项目?
+```javascript
+git clone https://github.com/heyushuo/mpvue-shop.git
+
+npm install //推荐使用cnpm进行安装,百度淘宝镜像
+//开启项目
+npm run dev
+
+//最后通过微信开发者工具打开项目,就可以运行项目了
+```
 **2019年10月18日**：建议本地自己搭建后台非常简单（搭建后台进行了简化），方便自己调试， 小程序后端 [点击进入小程序服务端源码地址](https://github.com/heyushuo/mpvue-shop-node)
 
 **2019年8月26日**：由于域名和证书到期了，以前下载项目的接口请求不到了，需要把请求的域名换成ip加端口
